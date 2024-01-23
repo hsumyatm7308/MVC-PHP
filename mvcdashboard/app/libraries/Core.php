@@ -2,10 +2,53 @@
 
 class Core
 {
+
+    protected $curcontroller = "Maincontroller";
+    protected $curmethod = "index";
+    protected $params = [];
+
     public function __construct()
     {
-        $this->geturl();
-        echo "<pre>" . print_r($this->geturl(), true) . "</pre>";
+        $url = $this->geturl();
+
+
+        if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
+            $this->curcontroller = ucwords($url[0]);
+            echo "<pre>" . print_r($this->curcontroller, true) . "</pre>";
+            unset($url[0]);
+
+        } else {
+            echo "No";
+        }
+
+
+        require_once('../app/controllers/' . $this->curcontroller . '.php');
+        $this->curcontroller = new $this->curcontroller;
+
+        echo "<pre>" . print_r($url, true) . "</pre>";
+
+
+        if (isset($url[1])) {
+            if (method_exists($this->curcontroller, $url[1])) {
+                // echo "method exits";
+                $this->curmethod = $url[1];
+
+                unset($url[1]);
+            } else {
+                echo "doesn't exits";
+            }
+        }
+
+
+
+        $this->params = $url ? array_values($url) : [];
+        call_user_func_array([$this->curcontroller, $this->curmethod], $this->params);
+
+
+
+
+
+
 
     }
 
@@ -15,7 +58,7 @@ class Core
         $url = isset($_GET['url']) ? rtrim($_GET['url']) : '';
         $url = filter_var($url, FILTER_SANITIZE_URL);
         $url = explode('/', $url);
-        print_r($url);
+        return $url;
     }
 }
 

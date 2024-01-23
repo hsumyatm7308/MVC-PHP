@@ -8,8 +8,5 @@ spl_autoload_register(function ($class) {
 
 
 
-require_once('libraries/Core.php');
 
-$obj = new Core();
-$obj->geturl();
 ?>
