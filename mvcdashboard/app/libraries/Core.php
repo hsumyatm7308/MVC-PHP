@@ -3,7 +3,7 @@
 class Core
 {
 
-    protected $curcontroller = "Maincontroller";
+    protected $curcontroller = "Mainpage";
     protected $curmethod = "index";
     protected $params = [];
 
@@ -12,20 +12,23 @@ class Core
         $url = $this->geturl();
 
 
+
+
         if (file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
             $this->curcontroller = ucwords($url[0]);
-            echo "<pre>" . print_r($this->curcontroller, true) . "</pre>";
+            // echo "<pre>" . print_r($this->curcontroller, true) . "</pre>";
             unset($url[0]);
 
         } else {
-            echo "No";
+            echo "No class";
         }
+
 
 
         require_once('../app/controllers/' . $this->curcontroller . '.php');
         $this->curcontroller = new $this->curcontroller;
 
-        echo "<pre>" . print_r($url, true) . "</pre>";
+        // echo "<pre>" . print_r($url, true) . "</pre>";
 
 
         if (isset($url[1])) {
@@ -34,8 +37,6 @@ class Core
                 $this->curmethod = $url[1];
 
                 unset($url[1]);
-            } else {
-                echo "doesn't exits";
             }
         }
 
