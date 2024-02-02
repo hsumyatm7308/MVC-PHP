@@ -22,6 +22,16 @@ class Productpage extends Controller
     }
 
 
+    public function create()
+    {
+
+        $data = [
+            'title' => 'Product',
+        ];
+
+        $this->view('productpage/create', $data);
+    }
+
 
 }
 
