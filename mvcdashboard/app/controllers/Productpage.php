@@ -1,7 +1,7 @@
 <?php
 
 
-class Products extends Controller
+class Productpage extends Controller
 {
 
 
@@ -15,10 +15,10 @@ class Products extends Controller
     {
 
         $data = [
-            'title' => 'Main',
+            'title' => 'Product',
         ];
 
-        $this->view('products/index', $data);
+        $this->view('productpage/index', $data);
     }
 
 
