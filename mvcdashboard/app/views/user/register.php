@@ -17,7 +17,7 @@
                 <h1 class="text-2xl text-white">Register Form</h1>
             </div>
 
-            <form action="" class="space-y-10">
+            <form action="http://localhost/mvc/mvcdashboard/user/register" method="POST" class="space-y-10">
                 <div class="text-[#e0e1dd]  space-y-4">
 
                     <div class="border border-[#778da9] rounded-lg">
