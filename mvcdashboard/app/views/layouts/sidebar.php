@@ -10,8 +10,16 @@
             </div>
         </div>
         <ul class="sidebar-list">
-            <li class="sidebar-list-item active">
-                <a href="mainpage">
+            <?php
+            $currenturl = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+            $explode = explode('/', $currenturl);
+
+
+
+            ?>
+
+            <li class="sidebar-list-item <?php echo 'mainpage' == $explode[3] ? 'active' : '' ?>">
+                <a href="<?php echo URLROOT; ?>/mainpage">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="feather feather-home">
@@ -21,8 +29,8 @@
                     <span>Home</span>
                 </a>
             </li>
-            <li class="sidebar-list-item ">
-                <a href="productpage">
+            <li class="sidebar-list-item <?php echo 'productpage' == $explode[3] ? 'active' : '' ?>">
+                <a href="<?php echo URLROOT; ?>/productpage">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="feather feather-shopping-bag">
@@ -33,7 +41,7 @@
                     <span>Products</span>
                 </a>
             </li>
-            <li class="sidebar-list-item">
+            <li class="sidebar-list-item ">
                 <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -44,7 +52,7 @@
                     <span>Statistics</span>
                 </a>
             </li>
-            <li class="sidebar-list-item">
+            <li class="sidebar-list-item ">
                 <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -56,7 +64,7 @@
                     <span>Inbox</span>
                 </a>
             </li>
-            <li class="sidebar-list-item">
+            <li class="sidebar-list-item ">
                 <a href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
