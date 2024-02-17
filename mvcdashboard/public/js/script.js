@@ -1,3 +1,5 @@
+
+
 document.querySelector(".jsFilter").addEventListener("click", function () {
     document.querySelector(".filter-menu").classList.toggle("active");
 });
@@ -23,3 +25,8 @@ modeSwitch.addEventListener('click', function () {
     document.documentElement.classList.toggle('light');
     modeSwitch.classList.toggle('active');
 });
+
+
+
+
+
