@@ -71,8 +71,30 @@
                             </div>
 
                             <div class="flex flex-col justify-s items-start ">
-                                <label for="">Title</label>
+                                <label for="">Price</label>
                                 <input type="text" class="w-full p-3" placeholder="Enter your title">
+                            </div>
+
+                            <div class="col-span-2 flex flex-col justify-s items-start ">
+                                <label for="">Description</label>
+                                <textarea name="" id="" class="w-full" rows="10"></textarea>
+                            </div>
+
+
+                            <div class="flex flex-col justify-s items-start ">
+                                <label for="">Brand</label>
+                                <input type="text" class="w-full p-3" placeholder="Enter your title">
+                            </div>
+
+                            <div class="flex flex-col justify-s items-start ">
+                                <label for="">Category</label>
+                                <input type="text" class="w-full p-3" placeholder="Enter your title">
+                            </div>
+
+
+                            <div class="col-span-2 flex  justify-end items-center space-x-5">
+                                <button class="bg-gray-200 text-gray-500 p-3">Cancle</button>
+                                <button class="bg-blue-500 text-center p-3">Submit</button>
                             </div>
 
                         </div>
