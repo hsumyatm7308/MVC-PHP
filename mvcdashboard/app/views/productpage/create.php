@@ -9,7 +9,7 @@
 
         height: 500px;
 
-        background-color: #aaa;
+        background-color: #1d283c;
         color: #ffff;
         text-align: center;
         padding: 10px;
@@ -52,44 +52,58 @@
     </div>
     <div class="products-area-wrapper ">
         <div class="products-row hover:bg-transparent">
+            <form action="" class="w-full " method="post" enctype="multipart/form-data">
 
-            <div class="w-full grid grid-cols-3 gap-5">
-                <div class="w-full mb-3 bg-blue-400 mt-6">
-                    <label for="image" class="gallery h-full">Choose Image</label>
+                <div class="w-full grid grid-cols-3 gap-5">
+                    <div class="w-full mb-3 bg-blue-400 mt-6">
+                        <label for="image" class="gallery h-full">Choose Image</label>
 
-                    <input type="file" name="image" id="image" class="" placeholder="Enter your image"
-                        value="{{old('image')}}" hidden />
-                </div>
+                        <input type="file" name="image" id="image" class="" placeholder="Enter your image" value=""
+                            hidden />
+                    </div>
 
-                <div class="col-span-2 ">
-                    <form action="" class="w-full ">
+
+                    <div class="col-span-2 ">
 
                         <div class="w-full text-gray-200 grid grid-cols-2 gap-5">
                             <div class="flex flex-col justify-s items-start ">
-                                <label for="">Title</label>
-                                <input type="text" class="w-full p-3" placeholder="Enter your title">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" class="w-full bg-[#1d283c] p-3"
+                                    placeholder="Enter your title">
                             </div>
 
                             <div class="flex flex-col justify-s items-start ">
-                                <label for="">Price</label>
-                                <input type="text" class="w-full p-3" placeholder="Enter your title">
+                                <label for="price">Price</label>
+                                <input type="number" name="price" id="price" class="w-full bg-[#1d283c] p-3"
+                                    placeholder="Enter your title">
                             </div>
 
                             <div class="col-span-2 flex flex-col justify-s items-start ">
-                                <label for="">Description</label>
-                                <textarea name="" id="" class="w-full" rows="10"></textarea>
+                                <label for="description">Description</label>
+                                <textarea name="description" id="description" class="w-full bg-[#1d283c] p-3"
+                                    rows="10"></textarea>
                             </div>
 
 
                             <div class="flex flex-col justify-s items-start ">
-                                <label for="">Brand</label>
-                                <input type="text" class="w-full p-3" placeholder="Enter your title">
+                                <label for="brand">Brand</label>
+                                <input type="text" name="brand" id="brand" class="w-full bg-[#1d283c] p-3"
+                                    placeholder="Enter your title">
                             </div>
 
                             <div class="flex flex-col justify-s items-start ">
-                                <label for="">Category</label>
-                                <input type="text" class="w-full p-3" placeholder="Enter your title">
+                                <label for="category_id">Category</label>
+                                <input type="text" name="category_id" id="category_id" class="w-full bg-[#1d283c] p-3"
+                                    placeholder="Enter your title">
                             </div>
+
+
+                            <div class="flex flex-col justify-s items-start ">
+                                <label for="status_id">Status</label>
+                                <input type="text" name="status_id" id="status_id" class="w-full bg-[#1d283c] p-3"
+                                    placeholder="Enter your title">
+                            </div>
+
 
 
                             <div class="col-span-2 flex  justify-end items-center space-x-5">
@@ -99,16 +113,16 @@
 
                         </div>
 
-                    </form>
-
-                </div>
-
-            </div>
-
+            </form>
 
         </div>
 
     </div>
+
+
+</div>
+
+</div>
 
 </div>
 </div>
@@ -122,6 +136,8 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 <script>
 
     $(document).ready(function () {
@@ -141,10 +157,13 @@
                 }
 
                 for (var i = 0; i < totalfiles; i++) {
-                    var filereader = new FileReader(); filereader.onload = function (e) {
+                    var filereader = new FileReader();
+                    filereader.onload = function (e) {
                         $(output).html(""); $($.parseHTML("<img>")).attr("src", e.target.result).appendTo(output);
                     }
                     filereader.readAsDataURL(input.files[i]);
+
+                    console.log(filereader.readAsDataURL(input.files[i]));
                 }
             }
         };

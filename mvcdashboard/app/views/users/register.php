@@ -80,7 +80,7 @@
         </form>
 
         <div class="text-center text-[#778da9]">
-            <a href="<?php echo URLROOT; ?>/user/login">Already have an account ? <span class="text-white">Login
+            <a href="<?php echo URLROOT; ?>/users/login">Already have an account ? <span class="text-white">Login
                     Here</span></a>
         </div>
     </div>

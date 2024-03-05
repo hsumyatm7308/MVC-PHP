@@ -25,11 +25,48 @@ class Productpage extends Controller
     public function create()
     {
 
-        $data = [
-            'title' => 'Product',
-        ];
 
-        $this->view('productpage/create', $data);
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+            $image = $_FILES['image'];
+            $uploaddir = IMG_UPLOAD . "/public/assets/items/";
+            $uploadfile = $uploaddir . basename($image['name']);
+
+
+
+            if (move_uploaded_file($image['tmp_name'], $uploadfile)) {
+                // echo "File Successfully Updaed";
+            } else {
+                // echo "Try Again";
+            }
+            $data = [
+                "image" => $uploadfile,
+                "name" => trim($_POST['name']),
+                "price" => trim($_POST['price']),
+                "description" => trim($_POST['description']),
+                "category_id" => trim($_POST['category_id']),
+                "status_id" => trim($_POST['status_id']),
+                "brand_id" => trim($_POST['status_id']),
+
+                "nameerr" => "",
+                "priceerr" => "",
+                "descriptionerr" => "",
+                "categoryerr" => "",
+                "statuserr" => "",
+                "branderr" => "",
+
+
+            ];
+
+            $this->mainmodel->createitems($data);
+
+
+
+
+        }
+
+        $this->view('productpage/create');
     }
 
 
@@ -38,3 +75,5 @@ class Productpage extends Controller
 
 
 ?>
+<!-- Note:: - ls -l /opt/lampp/htdocs/mvc/mvcdashboard/public/assets/ -->
+<!-- Note:: - chmod -R 777 /opt/lampp/htdocs/mvc/mvcdashboard/public/assets/ -->
