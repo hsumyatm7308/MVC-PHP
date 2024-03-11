@@ -2,9 +2,103 @@
 <?php
 require APPROOT . '/views/layouts/sidebar.php'; ?>
 
+<?php
+ini_set('display_errors', 1);
+?>
+
+<div class="w-screen h-full overflow-y-scroll">
+    <div class="w-full  flex justify-between p-10">
+        <div>
+            <h1 class="text-2xl text-white">Products</h1>
+        </div>
+        <div>
+            <a href="<?php echo URLROOT; ?>/productpage/create">
+                <button class="app-content-headerButton">Add Product</button>
+            </a>
+        </div>
+
+    </div>
+    <div class="w-full px-10">
+
+        <div class="w-full grid grid-cols-7 px-3 py-2 text-white bg-gray-500">
+            <div>
+                <h1>Id</h1>
+            </div>
+            <div class="">
+                <h1>Items</h1>
+            </div>
+            <div>
+                <h1>Categories</h1>
+            </div>
+
+            <div>
+                <h1>Status</h1>
+            </div>
+
+            <div>
+                <h1>Brand</h1>
+            </div>
 
 
-<div class="app-content">
+            <div>
+                <h1>Price</h1>
+            </div>
+
+            <div>
+                <h1>Action</h1>
+            </div>
+        </div>
+
+    </div>
+
+    <?php foreach ($data['items'] as $id => $item): ?>
+
+        <div class="w-full px-10 text-white">
+            <div class="w-full h-full grid grid-cols-7 px-3 py-2 text-white space-y-2">
+                <div>
+                    <?php echo ++$id; ?>
+                </div>
+                <div class="flex justify-start items-center space-x-2">
+
+                    <div class="w-10 h-10 rounded-md overflow-hidden">
+                        <img src="<?php echo URLROOT; ?><?php echo $item['image'] ?>" alt="" class="w-20">
+                    </div>
+
+
+                    <div>
+                        <?php echo $item['name'] ?>
+                    </div>
+                </div>
+
+
+                <div>
+                    <?php echo $item['category_id'] ?>
+                </div>
+
+                <div>
+                    <?php echo $item['status_id'] ?>
+
+                </div>
+
+                <div>
+                    <?php echo $item['brand_id']; ?>
+                </div>
+
+                <div>
+                    <?php echo $item['price'] ?>
+                </div>
+
+                <div>
+                    <h1>Action</h1>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<br>
+
+<!-- <div class="app-content">
     <div class="app-content-header">
         <h1 class="app-content-headerText">Products</h1>
         <button class="mode-switch" title="Switch Theme">
@@ -432,7 +526,7 @@ require APPROOT . '/views/layouts/sidebar.php'; ?>
         </div>
     </div>
 </div>
-</div>
+</div> -->
 
 
 

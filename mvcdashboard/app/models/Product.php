@@ -10,6 +10,14 @@ class Product
         $this->db = new Database();
     }
 
+    public function index()
+    {
+        $this->db->dbquery('SELECT * FROM items');
+        $this->db->dbexecute();
+
+        return $this->db->getmultidata();
+    }
+
     public function createitems($data)
     {
 

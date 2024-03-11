@@ -14,8 +14,15 @@ class Productpage extends Controller
     public function index()
     {
 
+        $items = $this->mainmodel->index();
+
+
+
         $data = [
-            'title' => 'Product',
+
+            'items' => $items
+
+
         ];
 
         $this->view('productpage/index', $data);
@@ -33,15 +40,12 @@ class Productpage extends Controller
             $uploaddir = IMG_UPLOAD . "/public/assets/items/";
             $uploadfile = $uploaddir . basename($image['name']);
 
+            move_uploaded_file($image['tmp_name'], $uploadfile);
 
+            $insertimg = "/public/assets/items/" . basename($image['name']);
 
-            if (move_uploaded_file($image['tmp_name'], $uploadfile)) {
-                // echo "File Successfully Updaed";
-            } else {
-                // echo "Try Again";
-            }
             $data = [
-                "image" => $uploadfile,
+                "image" => $insertimg,
                 "name" => trim($_POST['name']),
                 "price" => trim($_POST['price']),
                 "description" => trim($_POST['description']),

@@ -212,7 +212,7 @@ class Users extends Controller
     public function createusersession($user)
     {
 
-        echo $user->id; //err, cuz fetch(PDO::FETCH_ASSOC) in database file
+        echo $user->id;
         echo $user['id'];
 
         $_SESSION['user_id'] = $user['id'];

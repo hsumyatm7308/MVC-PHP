@@ -106,6 +106,15 @@
 
 
 
+                            <div class="flex flex-col justify-s items-start ">
+                                <label for="count">Count</label>
+                                <input type="text" name="count" id="count" class="w-full bg-[#1d283c] p-3"
+                                    placeholder="Enter your title">
+                            </div>
+
+
+
+
                             <div class="col-span-2 flex  justify-end items-center space-x-5">
                                 <button class="bg-gray-200 text-gray-500 p-3">Cancle</button>
                                 <button class="bg-blue-500 text-center p-3">Submit</button>
