@@ -1,109 +1,83 @@
 <?php require APPROOT . '/views/layouts/header.php'; ?>
 <?php require APPROOT . '/views/layouts/sidebar.php'; ?>
+<?php require APPROOT . '/views/layouts/navbar.php'; ?>
 
 <?php
 ini_set('display_errors', 1);
 ?>
 
 
-<div class="col-span-5 w-full h-screen overflow-y-scroll relative">
 
-    <div class="w-full flex justify-between items-center bg-teal-700 px-10 py-2 sticky top-0">
 
-        <div class="flex justify-start items-center">
-            <div class="w-8 h-8 rounded-full">
-                <ul class="w-full h-full space-y-1">
-                    <li class="list-none">
-                        <div class="w-full h-1 bg-green-100 rounded-md"></div>
-                    </li>
-                    <li class="list-none">
-                        <div class="w-full h-1 bg-green-100 rounded-md"></div>
-                    </li>
-                    <li class="list-none">
-                        <div class="w-full h-1 bg-green-100 rounded-md"></div>
-                    </li>
 
-                </ul>
-            </div>
+<div class="w-full text-black  flex justify-between items-center p-10 mb-5">
+    <div>
+        <div>
+            <h1 class="text-2xl">Products List</h1>
         </div>
-        <div class="flex justify-end items-center space-x-2">
-            <div class="w-10 h-10 rounded-full bg-green-100">
-
-            </div>
-            <span>Admin</span>
+        <div class="text-gray-500 mt-2">
+            <span class="text-sm">Home | Product List</span>
         </div>
     </div>
+    <div>
+        <a href="<?php echo URLROOT; ?>/productpage/create"
+            class="text-green-100 bg-teal-500 hover:bg-teal-600 rounded-md px-4 py-2 ">
+            <button class="app-content-headerButton">Add Product</button>
+        </a>
+    </div>
 
+</div>
+<div class="w-full px-10">
 
-
-    <div class="w-full text-black  flex justify-between items-center p-10 mb-5">
+    <div
+        class="w-full bg-teal-500 text-green-100 flex items-center grid grid-cols-8 rounded-tl-md rounded-tr-md px-10 py-4">
         <div>
-            <div>
-                <h1 class="text-2xl">Products List</h1>
-            </div>
-            <div class="text-gray-500">
-                <span class="text-sm">Home | Product List</span>
-            </div>
+            <h1>Id</h1>
         </div>
         <div>
-            <a href="<?php echo URLROOT; ?>/productpage/create"
-                class="text-green-100 bg-teal-500 rounded-md px-4 py-2 ">
-                <button class="app-content-headerButton">Add Product</button>
-            </a>
+            <h1>Photo</h1>
+        </div>
+        <div class="">
+            <h1>Items</h1>
         </div>
 
-    </div>
-    <div class="w-full px-10">
-
-        <div
-            class="w-full bg-teal-500 text-green-100 flex items-center grid grid-cols-8 rounded-tl-md rounded-tr-md px-10 py-4">
-            <div>
-                <h1>Id</h1>
-            </div>
-            <div>
-                <h1>Photo</h1>
-            </div>
-            <div class="">
-                <h1>Items</h1>
-            </div>
-
-            <div>
-                <h1>Status</h1>
-            </div>
-
-
-            <div>
-                <h1>Categories</h1>
-            </div>
-
-            <div>
-                <h1>Price</h1>
-            </div>
-
-            <div>
-                <h1>Brand</h1>
-            </div>
-
-
-
-
-            <div>
-                <h1>Action</h1>
-            </div>
+        <div>
+            <h1>Status</h1>
         </div>
 
+
+        <div>
+            <h1>Categories</h1>
+        </div>
+
+        <div>
+            <h1>Price</h1>
+        </div>
+
+        <div>
+            <h1>Brand</h1>
+        </div>
+
+
+
+
+        <div>
+            <h1>Action</h1>
+        </div>
     </div>
 
-
-    <?php foreach ($data['items'] as $id => $item): ?>
-
+</div>
 
 
+<?php foreach ($data['items'] as $id => $item): ?>
 
 
 
-        <div class="w-full px-10 ">
-            <div class="w-full h-full grid grid-cols-8 px-10 py-2  space-y-2  
+
+
+
+    <div class="w-full px-10 ">
+        <div class="w-full h-full grid grid-cols-8 px-10 py-2  space-y-2  
             <?php
             if (!is_even($id)) {
                 echo "bg-teal-50";
@@ -114,59 +88,59 @@ ini_set('display_errors', 1);
 
 
 
-                <div class="flex justify-start items-center space-x-2">
-                    <?php echo ++$id; ?>
+            <div class="flex justify-start items-center space-x-2">
+                <?php echo ++$id; ?>
+            </div>
+            <div class="flex justify-start items-center space-x-2">
+                <div class="w-10 h-10 rounded-md overflow-hidden">
+                    <img src="<?php echo URLROOT; ?><?php echo $item['image'] ?>" alt="" class="w-20">
                 </div>
-                <div class="flex justify-start items-center space-x-2">
-                    <div class="w-10 h-10 rounded-md overflow-hidden">
-                        <img src="<?php echo URLROOT; ?><?php echo $item['image'] ?>" alt="" class="w-20">
-                    </div>
+            </div>
+
+            <div class="flex justify-start items-center space-x-2">
+                <div>
+                    <?php echo $item['name'] ?>
                 </div>
+            </div>
 
-                <div class="flex justify-start items-center space-x-2">
-                    <div>
-                        <?php echo $item['name'] ?>
-                    </div>
+            <div class="flex justify-start items-center space-x-2">
+                <!-- <?php echo $item['status_id'] ?> -->
+
+                <?php
+                if (is_even($id)) {
+                    echo '<span class="text-teal-700 text-sm"> In stock </span>';
+                } else {
+                    echo '<span class="text-red-700 text-sm"> Out of stock </span>';
+                }
+                ?>
+
+            </div>
+
+            <div class="flex justify-start items-center space-x-2">
+                <?php echo $item['category_id'] ?>
+            </div>
+
+            <div class="flex justify-start items-center space-x-2">
+                <?php echo $item['price'] ?>
+            </div>
+
+            <div class="flex justify-start items-center space-x-2">
+                <?php echo $item['brand_id']; ?>
+            </div>
+
+
+
+            <div class="text-teal-50 flex items-center space-x-2">
+                <div class="bg-teal-100 text-teal-500 rounded-sm hover:bg-green-300">
+                    <a href="" class="w-full px-3">Edit</a>
                 </div>
-
-                <div class="flex justify-start items-center space-x-2">
-                    <!-- <?php echo $item['status_id'] ?> -->
-
-                    <?php
-                    if (is_even($id)) {
-                        echo '<span class="text-teal-700 text-sm"> In stock </span>';
-                    } else {
-                        echo '<span class="text-red-700 text-sm"> Out of stock </span>';
-                    }
-                    ?>
-
-                </div>
-
-                <div class="flex justify-start items-center space-x-2">
-                    <?php echo $item['category_id'] ?>
-                </div>
-
-                <div class="flex justify-start items-center space-x-2">
-                    <?php echo $item['price'] ?>
-                </div>
-
-                <div class="flex justify-start items-center space-x-2">
-                    <?php echo $item['brand_id']; ?>
-                </div>
-
-
-
-                <div class="text-teal-50 flex items-center space-x-2">
-                    <div class="bg-teal-100 text-teal-500 rounded-sm hover:bg-green-300">
-                        <a href="" class="w-full px-3">Edit</a>
-                    </div>
-                    <div class="bg-red-600 rounded-sm hover:bg-red-500">
-                        <button type="button" class="w-full px-3">Del</button>
-                    </div>
+                <div class="bg-red-600 rounded-sm hover:bg-red-500">
+                    <button type="button" class="w-full px-3">Del</button>
                 </div>
             </div>
         </div>
-    <?php endforeach; ?>
+    </div>
+<?php endforeach; ?>
 </div>
 
 <!-- <div class="app-content">
