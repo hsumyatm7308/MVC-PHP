@@ -1,5 +1,5 @@
-<div class="app-container">
-
+<div class="grid grid-cols-6 relative">
+    <!-- 
     <div class="sidebar">
         <div class="sidebar-header">
             <div class="app-icon">
@@ -10,13 +10,7 @@
             </div>
         </div>
         <ul class="sidebar-list">
-            <?php
-            $currenturl = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-            $explode = explode('/', $currenturl);
-
-
-
-            ?>
+        
 
             <li class="sidebar-list-item <?php echo 'mainpage' == $explode[3] ? 'active' : '' ?>">
                 <a href="<?php echo URLROOT; ?>/mainpage">
@@ -92,4 +86,56 @@
                 </svg>
             </button>
         </div>
+    </div> -->
+
+    <div class="bg-teal-900 text-green-100">
+        <div class="flex justify-start items-center space-x-2 px-10 py-2">
+            <span class="text-3xl font-bold">D.</span>
+        </div>
+
+
+
+
+        <div class="pl-10 mt-10">
+            <span class="text-sm text-teal-50 opacity-70">Dashboard</span>
+            <ul class="pl-5 space-y-1 mt-3">
+                <li class="w-full <?php echo active('dashboard'); ?> ">
+
+                    <a href="dashboard"
+                        class="w-full inline-block rounded-l-md hover:bg-white hover:text-teal-900  pl-3 py-3 space-x-1">
+                        <i class="fa-solid fa-gauge"></i>
+                        <span>Dashboard</span>
+                    </a>
+
+
+                </li>
+
+                <li class="w-full ">
+
+                    <span
+                        class="w-full inline-block rounded-l-md hover:bg-white hover:text-teal-900  pl-3 py-3 space-x-1">
+                        <i class="fa-brands fa-product-hunt"></i>
+                        <span>Products</span>
+                    </span>
+
+                    <ul class="pl-10 space-y-1 mt-1">
+                        <li class="w-full <?php echo active('productpage'); ?> ">
+                            <a href="<?php echo URLROOT; ?>/productpage"
+                                class="w-full text-sm inline-block rounded-l-md hover:bg-white hover:text-teal-900  pl-3 py-3 space-x-1">
+                                <i class="fa-solid fa-list"></i>
+                                <span>All Products</span>
+                            </a>
+                        </li>
+                        <li class="w-full <?php echo active('productpage/create'); ?> ">
+                            <a href="<?php echo URLROOT; ?>/productpage/create"
+                                class="w-full text-sm inline-block rounded-l-md hover:bg-white hover:text-teal-900  pl-3 py-3 space-x-1">
+                                <i class="fa-solid fa-folder-open"></i>
+                                <span>New Product</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
     </div>
