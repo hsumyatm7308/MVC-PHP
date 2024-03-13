@@ -34,41 +34,45 @@ class Productpage extends Controller
 
 
 
-        if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        // if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-            $image = $_FILES['image'];
-            $uploaddir = IMG_UPLOAD . "/public/assets/items/";
-            $uploadfile = $uploaddir . basename($image['name']);
+        //     $image = $_FILES['image'];
+        //     $uploaddir = IMG_UPLOAD . "/public/assets/items/";
+        //     $uploadfile = $uploaddir . basename($image['name']);
 
-            move_uploaded_file($image['tmp_name'], $uploadfile);
+        //     move_uploaded_file($image['tmp_name'], $uploadfile);
 
-            $insertimg = "/public/assets/items/" . basename($image['name']);
+        //     $insertimg = "/public/assets/items/" . basename($image['name']);
 
-            $data = [
-                "image" => $insertimg,
-                "name" => trim($_POST['name']),
-                "price" => trim($_POST['price']),
-                "description" => trim($_POST['description']),
-                "category_id" => trim($_POST['category_id']),
-                "status_id" => trim($_POST['status_id']),
-                "brand_id" => trim($_POST['status_id']),
+        //     $data = [
+        //         "image" => $insertimg,
+        //         "name" => trim($_POST['name']),
+        //         "price" => trim($_POST['price']),
+        //         "description" => trim($_POST['description']),
+        //         "category_id" => trim($_POST['category_id']),
+        //         "status_id" => trim($_POST['status_id']),
+        //         "brand_id" => trim($_POST['status_id']),
 
-                "nameerr" => "",
-                "priceerr" => "",
-                "descriptionerr" => "",
-                "categoryerr" => "",
-                "statuserr" => "",
-                "branderr" => "",
-
-
-            ];
-
-            $this->mainmodel->createitems($data);
+        //         "nameerr" => "",
+        //         "priceerr" => "",
+        //         "descriptionerr" => "",
+        //         "categoryerr" => "",
+        //         "statuserr" => "",
+        //         "branderr" => "",
 
 
+        //     ];
+
+        //     $this->mainmodel->createitems($data);
 
 
-        }
+
+
+        // }
+
+
+
+
 
         $this->view('productpage/create');
     }

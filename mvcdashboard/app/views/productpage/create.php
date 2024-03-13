@@ -32,6 +32,10 @@
         align-items: center;
 
     }
+
+    .scrollbars::-webkit-scrollbar {
+        width: 2px;
+    }
 </style>
 
 <!-- 
@@ -136,79 +140,6 @@
 </div>
 </div> -->
 
-<style>
-    .scrollbars::-webkit-scrollbar {
-        width: 2px;
-    }
-
-    /* The container must be positioned relative: */
-    .custom-select {
-        position: relative;
-        font-family: Arial;
-    }
-
-    .custom-select select {
-        display: none;
-        /*hide original SELECT element: */
-    }
-
-    .select-selected {
-        background-color: #fff;
-        border-radius: 6px;
-    }
-
-    /* Style the arrow inside the select element: */
-    .select-selected:after {
-        position: absolute;
-        content: "";
-        top: 14px;
-        right: 10px;
-        width: 0;
-        height: 0;
-        border: 6px solid transparent;
-        border-color: #fff transparent transparent transparent;
-    }
-
-    /* Point the arrow upwards when the select box is open (active): */
-    .select-selected.select-arrow-active:after {
-        border-color: transparent transparent #fff transparent;
-        top: 7px;
-    }
-
-    /* style the items (options), including the selected item: */
-    .select-items div,
-    .select-selected {
-        color: #000;
-        padding: 8px 16px;
-        border: 1px solid transparent;
-        border-color: transparent transparent rgba(0, 0, 0, .1) transparent;
-        cursor: pointer;
-    }
-
-    /* Style items (options): */
-    .select-items {
-        position: absolute;
-        background-color: #ffff;
-        top: 100%;
-        left: 0;
-        right: 0;
-        z-index: 99;
-        margin-top: 5px;
-        border: 1px solid rgb(153 246 228);
-        border-radius: 6px;
-    }
-
-    /* Hide the items when the select box is closed: */
-    .select-hide {
-        display: none;
-    }
-
-    .select-items div:hover,
-    .same-as-selected {
-        background-color: rgb(204 251 241);
-    }
-</style>
-
 
 
 
@@ -224,18 +155,16 @@
         </div>
     </div>
     <div>
-        <form action="">
-            <span class="text-green-100 bg-teal-500 hover:bg-teal-600 rounded-md px-4 py-2 ">
-                <button type="submit" class="app-content-headerButton">Create</button>
-            </span>
-        </form>
+        <span class="text-teal-50 bg-teal-500  transition-all duration-300  hover:bg-teal-600 rounded-md px-4 py-2 ">
+            <button type="button" class="create_btn">Publish</button>
+        </span>
 
     </div>
 
 </div>
 
 <div class="w-full px-10">
-    <form action="" method="">
+    <form id="form" action="" method="">
 
         <div class="w-full grid grid-cols-4 gap-10">
             <div class="col-span-3 w-full bg-teal-100 rounded-md px-10 py-10 ">
@@ -265,10 +194,10 @@
                         class="w-full h-44 border border-teal-200 flex justify-center items-center rounded-md mb-5 gallery">
 
                     </div>
-                    <div class="w-full text-green-100 bg-teal-500  hover:bg-teal-600  py-2">
+                    <div class="w-full text-teal-50 bg-teal-500  transition-all duration-300   hover:bg-teal-600  py-2">
                         <label for="image" class="w-full text-center inline-block">Add Photo</label>
 
-                        <input type="file" name="" id="image" hidden>
+                        <input type="file" name="image" id="image" hidden>
                     </div>
                 </div>
 
@@ -278,7 +207,7 @@
 
                     <div class="w-full relative custom-select">
                         <select
-                            class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
+                            class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
                             <option>Option 1</option>
                             <option>Option 2</option>
                             <option>Option 3</option>
@@ -292,27 +221,7 @@
                             </svg>
                         </div>
                     </div>
-                    <!-- <div class="w-full relative">
-                        <select
-                            class="block appearance-none w-full bg-white border border-gray-300 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
-                            <option value="1" style="background-color: transparent;" class="hover:bg-red-700">Option 1
-                            </option>
-                            <option value="2" style="background-color: transparent;" class="hover:bg-red-700">Option 2
-                            </option>
-                            <option value="3" style="background-color: transparent;" class="hover:bg-red-700">Option 3
-                            </option>
-                        </select>
 
-
-
-                        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-red-600">
-                            <svg class="w-4 h-4 fill-current text-gray-500" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                    d="M10 12.586L5.707 8.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 12.586z" />
-                            </svg>
-                        </div>
-                    </div> -->
 
                 </div>
 
@@ -321,11 +230,135 @@
         </div>
 
 
+
+
+        <div class="w-full grid grid-cols-4 gap-10 mt-10">
+            <div class="col-span-3 w-full bg-teal-100  rounded-md px-10 py-3 ">
+                <div class="w-full  space-y-5">
+                    Other Details
+                </div>
+
+            </div>
+        </div>
+
+        <div class="w-full grid grid-cols-4 gap-10 mt-10">
+            <div class="col-span-3 w-full rounded-md py-10 ">
+
+                <div class="w-full grid grid-cols-3 gap-10">
+                    <div class="w-full bg-teal-100 text-teal-900 rounded-md px-6 py-10">
+                        <ul class="space-y-1 otherdetails_container_left">
+                            <li
+                                class="w-full bg-teal-500 text-teal-50 transition-all duration-300 hover:bg-teal-500 hover:text-teal-50 rounded-md py-3 px-4 space-x-1 otherdetails_element_left">
+                                <i class="fa-solid fa-stethoscope"></i>
+                                <span>General</span>
+                            </li>
+                            <li
+                                class="w-full  transition-all duration-300 hover:bg-teal-500 hover:text-teal-50 rounded-md py-3 px-4 space-x-1 otherdetails_element_left">
+                                <i class="fa-solid fa-layer-group"></i>
+                                <span>Stock</span>
+                            </li>
+                            <li
+                                class="w-full transition-all duration-300 hover:bg-teal-500 hover:text-teal-50 rounded-md py-3 px-4 space-x-1 otherdetails_element_left">
+                                <i class="fa-solid fa-truck-fast"></i>
+                                <span>Shipping</span>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-span-2 otherdetails_container_right">
+                        <div class="bg-teal-100 rounded-md px-10 py-10 space-y-5 otherdetails_element_right">
+                            <div class="w-full grid grid-cols-3 items-center">
+                                <label for="price">Price:</label>
+                                <input type="number" name="price" id="price"
+                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2 "
+                                    placeholder="Price">
+                            </div>
+                            <div class="w-full grid grid-cols-3 items-center">
+                                <label for="discount">Discount:</label>
+                                <input type="number" name="discount" id="discount"
+                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2 "
+                                    placeholder="Discount">
+                            </div>
+                        </div>
+
+                        <div class="bg-teal-100 rounded-md px-10 py-10 space-y-5 hidden otherdetails_element_right">
+
+                            <div class="w-full grid grid-cols-3 items-center">
+                                <label for="">Stock Status:</label>
+
+                                <div class="col-span-2 w-full relative custom-select">
+                                    <select
+                                        class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
+                                        <option>In Stock</option>
+                                        <option>Out Of Stock</option>
+                                    </select>
+
+                                    <div
+                                        class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-red-600">
+                                        <svg class="w-4 h-4 fill-current text-gray-500" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M10 12.586L5.707 8.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 12.586z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="w-full grid grid-cols-3 items-center">
+                                <label for="">Quantity:</label>
+                                <input type="number" name="name" id="name"
+                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-2 mt-2 "
+                                    value="10">
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="bg-teal-100 w-full flex justify-start items-start rounded-md px-10 py-10 hidden otherdetails_element_right">
+                            <div class=" w-full grid grid-cols-3 items-center">
+                                <label for="">Shipping:</label>
+
+                                <div class="col-span-2 w-full relative custom-select">
+                                    <select
+                                        class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
+                                        <option>No Shipping</option>
+                                        <option>Free Shipping</option>
+                                        <option>Fixed Shipping</option>
+                                    </select>
+
+                                    <div
+                                        class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-red-600">
+                                        <svg class="w-4 h-4 fill-current text-gray-500" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M10 12.586L5.707 8.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 12.586z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </form>
+
+
 </div>
 
-</form>
 
 </div>
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -334,97 +367,15 @@
 
 <script>
 
-    var x, i, j, l, ll, selElmnt, a, b, c;
-    /* Look for any elements with the class "custom-select": */
-    x = document.getElementsByClassName("custom-select");
-    l = x.length;
-    for (i = 0; i < l; i++) {
-        selElmnt = x[i].getElementsByTagName("select")[0];
-        ll = selElmnt.length;
-        /* For each element, create a new DIV that will act as the selected item: */
-        a = document.createElement("DIV");
-        a.setAttribute("class", "select-selected");
-        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-        x[i].appendChild(a);
-        /* For each element, create a new DIV that will contain the option list: */
-        b = document.createElement("DIV");
-        b.setAttribute("class", "select-items select-hide");
-        for (j = 1; j < ll; j++) {
-            /* For each option in the original select element,
-            create a new DIV that will act as an option item: */
-            c = document.createElement("DIV");
-            c.innerHTML = selElmnt.options[j].innerHTML;
-            c.addEventListener("click", function (e) {
-                /* When an item is clicked, update the original select box,
-                and the selected item: */
-                var y, i, k, s, h, sl, yl;
-                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-                sl = s.length;
-                h = this.parentNode.previousSibling;
-                for (i = 0; i < sl; i++) {
-                    if (s.options[i].innerHTML == this.innerHTML) {
-                        s.selectedIndex = i;
-                        h.innerHTML = this.innerHTML;
-                        y = this.parentNode.getElementsByClassName("same-as-selected");
-                        yl = y.length;
-                        for (k = 0; k < yl; k++) {
-                            y[k].removeAttribute("class");
-                        }
-                        this.setAttribute("class", "same-as-selected");
-                        break;
-                    }
-                }
-                h.click();
-            });
-            b.appendChild(c);
-        }
-        x[i].appendChild(b);
-        a.addEventListener("click", function (e) {
-            /* When the select box is clicked, close any other select boxes,
-            and open/close the current select box: */
-            e.stopPropagation();
-            closeAllSelect(this);
-            this.nextSibling.classList.toggle("select-hide");
-            this.classList.toggle("select-arrow-active");
-        });
-    }
 
-    function closeAllSelect(elmnt) {
-        /* A function that will close all select boxes in the document,
-        except the current select box: */
-        var x, y, i, xl, yl, arrNo = [];
-        x = document.getElementsByClassName("select-items");
-        y = document.getElementsByClassName("select-selected");
-        xl = x.length;
-        yl = y.length;
-        for (i = 0; i < yl; i++) {
-            if (elmnt == y[i]) {
-                arrNo.push(i)
-            } else {
-                y[i].classList.remove("select-arrow-active");
-            }
-        }
-        for (i = 0; i < xl; i++) {
-            if (arrNo.indexOf(i)) {
-                x[i].classList.add("select-hide");
-            }
-        }
-    }
-
-    /* If the user clicks anywhere outside the select box,
-    then close all select boxes: */
-    document.addEventListener("click", closeAllSelect);
 
 
     $(document).ready(function () {
-        // console.log("hi")
 
         var previewimages = function (input, output) {
-            // console.log(input.files);
 
             if (input.files) {
                 var totalfiles = input.files.length;
-                // console.log(totalfiles);
 
                 if (totalfiles > 0) {
                     $('.gallery').addClass('removetext');
@@ -451,4 +402,58 @@
         })
 
     });
+
+
+    // other details 
+    let leftdetaileles = document.querySelectorAll('.otherdetails_element_left');
+    let rightdetailele = document.querySelectorAll('.otherdetails_element_right');
+
+    const indexes = [];
+    const show = [...leftdetaileles].map((leftdetailele, idx) => {
+        leftdetailele.addEventListener('click', () => {
+            const rest = indexes.filter(index => index !== idx);
+            rightdetailele[idx].classList.remove('hidden');
+            rest.forEach(index => {
+                rightdetailele[index].classList.add('hidden');
+            });
+        });
+        indexes.push(idx);
+    });
+
+
+
+    // all values from form
+
+    let form = document.getElementById('form');
+
+    function getallvalues(form) {
+
+        const formdata = new FormData(form);
+        const val = {};
+        for (const [name, value] of formdata.entries()) {
+            val[name] = value
+        }
+        return val;
+
+    }
+
+
+    const createbtn = document.querySelector('.create_btn')
+
+    createbtn.addEventListener('click', () => {
+        // Assuming getallvalues(form) function is defined and returns form values
+        const formvalues = getallvalues(form);
+
+
+
+
+    });
+
+
+
+
 </script>
+
+
+
+<!-- /opt/lampp/htdocs/mvc/mvcdashboard/app/views/productpage/ -->
