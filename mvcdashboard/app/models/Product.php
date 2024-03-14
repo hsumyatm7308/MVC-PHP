@@ -24,17 +24,23 @@ class Product
         try {
 
 
-            $image = $data['image'];
+
+
             $name = $data['name'];
-            $price = $data['price'];
             $description = $data['description'];
-            $category_id = $data['category_id'];
-            $status_id = $data['status_id'];
-            $brand_id = $data['brand_id'];
+            // $image = $data['image'];
+            $price = $data['price'];
+            $discount = $data['discount'];
+            $quantity = $data['quantity'];
+            $status_id = 1;
+            $category_id = 1;
+            $brand_id = 1;
 
 
-            $this->db->dbquery("INSERT INTO items(image,name,price,description,category_id,status_id,brand_id) VALUES(:image,:name,:price,:description,:category,:status,:brand)");
-            $this->db->dbbind(":image", $image);
+
+
+            $this->db->dbquery("INSERT INTO items(name,price,description,category_id,status_id,brand_id) VALUES(:name,:price,:description,:category,:status,:brand)");
+            // $this->db->dbbind(":image", $image);
             $this->db->dbbind(":name", $name);
             $this->db->dbbind(":price", $price);
             $this->db->dbbind(":description", $description);

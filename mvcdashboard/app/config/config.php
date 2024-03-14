@@ -13,13 +13,3 @@ define('DB_PASS', '');
 define('DB_NAME', 'perfume');
 
 ?>
-
-<!-- 
-CREATE TABLE IF NOT EXISTS users(
-id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-fullname VARCHAR(100),
-email VARCHAR (100),
-password TEXT,
-created_at DATE,
-updated_at DATE
-) -->

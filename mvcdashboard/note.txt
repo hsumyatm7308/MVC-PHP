@@ -1,0 +1,2 @@
+<!-- Note:: - ls -l /opt/lampp/htdocs/mvc/mvcdashboard/public/assets/ -->
+<!-- Note:: - chmod -R 777 /opt/lampp/htdocs/mvc/mvcdashboard/public/assets/ -->

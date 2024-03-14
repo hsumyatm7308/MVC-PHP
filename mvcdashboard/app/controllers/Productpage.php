@@ -78,10 +78,69 @@ class Productpage extends Controller
     }
 
 
+    public function store()
+    {
+
+
+
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Authorization");
+
+        $post_data = json_decode($_POST['datas'], true);
+
+
+
+
+
+
+
+
+
+
+        if ($post_data !== null) {
+            $name = $post_data['name'];
+            $description = $post_data['description'];
+            $image = $post_data['image'];
+            $price = $post_data['price'];
+            $discount = $post_data['discount'];
+            $quantity = $post_data['quantity'];
+            $status_id = 1;
+            $category_id = 1;
+            $brand_id = 1;
+
+            $data = [
+                "image" => $image,
+                "name" => $name,
+                "price" => $price,
+                "description" => $description,
+                "quantity" => $quantity,
+                "discount" => $discount,
+                "status_id" => $status_id,
+                "category_id" => $category_id,
+                "brand_id" => $brand_id
+            ];
+
+
+
+
+
+            $this->mainmodel->createitems($data);
+
+
+
+        } else {
+            echo json_encode(array('status' => 'error', 'message' => 'Invalid JSON data'));
+        }
+
+
+
+
+    }
+
+
 }
 
 
 
 ?>
-<!-- Note:: - ls -l /opt/lampp/htdocs/mvc/mvcdashboard/public/assets/ -->
-<!-- Note:: - chmod -R 777 /opt/lampp/htdocs/mvc/mvcdashboard/public/assets/ -->

@@ -155,10 +155,11 @@
         </div>
     </div>
     <div>
+        <!-- <form action="" method="GET"> -->
         <span class="text-teal-50 bg-teal-500  transition-all duration-300  hover:bg-teal-600 rounded-md px-4 py-2 ">
             <button type="button" class="create_btn">Publish</button>
         </span>
-
+        <!-- </form> -->
     </div>
 
 </div>
@@ -306,8 +307,8 @@
 
 
                             <div class="w-full grid grid-cols-3 items-center">
-                                <label for="">Quantity:</label>
-                                <input type="number" name="name" id="name"
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" name="quantity" id="quantity"
                                     class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-2 mt-2 "
                                     value="10">
                             </div>
@@ -440,20 +441,108 @@
 
     const createbtn = document.querySelector('.create_btn')
 
-    createbtn.addEventListener('click', () => {
-        // Assuming getallvalues(form) function is defined and returns form values
+    // createbtn.addEventListener('click', (e) => {
+    //     const formvalues = getallvalues(form);
+
+
+    //     const reader = new FileReader();
+    //     console.log(reader)
+
+    //     reader.onload = function (e) {
+    //         var datajsonobj = formvalues;
+
+    //         formvalues.image = event.target.result;
+
+
+
+
+    //         var datajson = JSON.stringify(datajsonobj);
+
+
+
+
+    //         var xmlhttp = new XMLHttpRequest();
+    //         var url = `http://localhost/mvc/mvcdashboard/productpage/store`;
+    //         xmlhttp.open("POST", url, true);
+    //         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    //         xmlhttp.send("datas=" + datajson);
+
+    //         xmlhttp.onreadystatechange = function (e) {
+
+
+    //             if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
+    //                 var result = xmlhttp.response;
+    //                 console.log(result)
+
+    //             }
+
+    //         };
+
+    //         e.preventDefault();
+    //     };
+
+    //     reader.onerror = function (event) {
+    //         console.error("File reading error:", event.target.error);
+    //     };
+
+    //     reader.readAsDataURL(formvalues.image);
+
+
+
+
+
+
+
+
+    // });
+
+
+
+
+    createbtn.addEventListener('click', (e) => {
         const formvalues = getallvalues(form);
 
+        // console.log(formvalues.image)
+
+        // const reader = new FileReader();
+
+        // reader.onload = function (event) {
+        // formvalues.image = event.target.result;
+
+        // console.log(formvalues.image);
+
+
+        var datajson = JSON.stringify(formvalues);
 
 
 
+
+        var xmlhttp = new XMLHttpRequest();
+        var url = `http://localhost/mvc/mvcdashboard/productpage/store`;
+        xmlhttp.open("POST", url, true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send("datas=" + datajson);
+
+        xmlhttp.onreadystatechange = function (e) {
+
+
+            if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
+                var result = xmlhttp.response;
+                console.log(result)
+
+            }
+
+        };
+
+        e.preventDefault();
+
+        // };
+
+        // Read the file as data URL (base64-encoded)
+        // reader.readAsDataURL(formvalues.image);
     });
 
 
 
 
 </script>
-
-
-
-<!-- /opt/lampp/htdocs/mvc/mvcdashboard/app/views/productpage/ -->
