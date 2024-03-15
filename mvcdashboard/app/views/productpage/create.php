@@ -424,68 +424,24 @@
 
 
     // all values from form
-
-    let form = document.getElementById('form');
-
-    function getallvalues(form) {
-
-        const formdata = new FormData(form);
-        const val = {};
-        for (const [name, value] of formdata.entries()) {
-            val[name] = value
-        }
-        return val;
-
-    }
-
-
     const createbtn = document.querySelector('.create_btn')
 
-    // createbtn.addEventListener('click', (e) => {
-    //     const formvalues = getallvalues(form);
+
+    document.addEventListener('DOMContentLoaded', function () {
 
 
-    //     const reader = new FileReader();
-    //     console.log(reader)
+        createbtn.addEventListener('click', (e) => {
+            let form = document.getElementById('form');
 
-    //     reader.onload = function (e) {
-    //         var datajsonobj = formvalues;
 
-    //         formvalues.image = event.target.result;
-
+            const formdata = new FormData(form);
 
 
 
-    //         var datajson = JSON.stringify(datajsonobj);
+            const imagefile = document.getElementById('image').files[0];
 
 
-
-
-    //         var xmlhttp = new XMLHttpRequest();
-    //         var url = `http://localhost/mvc/mvcdashboard/productpage/store`;
-    //         xmlhttp.open("POST", url, true);
-    //         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    //         xmlhttp.send("datas=" + datajson);
-
-    //         xmlhttp.onreadystatechange = function (e) {
-
-
-    //             if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
-    //                 var result = xmlhttp.response;
-    //                 console.log(result)
-
-    //             }
-
-    //         };
-
-    //         e.preventDefault();
-    //     };
-
-    //     reader.onerror = function (event) {
-    //         console.error("File reading error:", event.target.error);
-    //     };
-
-    //     reader.readAsDataURL(formvalues.image);
+            formdata.append('image', imagefile)
 
 
 
@@ -493,54 +449,44 @@
 
 
 
+            var xmlhttp = new XMLHttpRequest();
+            var url = `http://localhost/mvc/mvcdashboard/productpage/store`;
+            xmlhttp.open("POST", url, true);
+            xmlhttp.onreadystatechange = function (e) {
+                if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
+                    var result = xmlhttp.response;
 
-    // });
+                    let allhasdata = true;
 
+                    for (const [name, value] of formdata.entries()) {
+                        if (!value) {
+                            allhasdata = false;
+                            break;
+                        }
+                    }
 
-
-
-    createbtn.addEventListener('click', (e) => {
-        const formvalues = getallvalues(form);
-
-        // console.log(formvalues.image)
-
-        // const reader = new FileReader();
-
-        // reader.onload = function (event) {
-        // formvalues.image = event.target.result;
-
-        // console.log(formvalues.image);
-
-
-        var datajson = JSON.stringify(formvalues);
-
+                    if (!imagefile) {
+                        allhasdata = false;
+                    }
 
 
+                    if (allhasdata) {
+                        console.log("All values have data.");
+                        window.location.href = 'http://localhost/mvc/mvcdashboard/productpage';
 
-        var xmlhttp = new XMLHttpRequest();
-        var url = `http://localhost/mvc/mvcdashboard/productpage/store`;
-        xmlhttp.open("POST", url, true);
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xmlhttp.send("datas=" + datajson);
+                    } else {
+                        console.log("Not all values have data.");
+                    }
 
-        xmlhttp.onreadystatechange = function (e) {
+                }
+            };
 
+            xmlhttp.send(formdata);
+        });
 
-            if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
-                var result = xmlhttp.response;
-                console.log(result)
-
-            }
-
-        };
-
-        e.preventDefault();
-
-        // };
-
-        // Read the file as data URL (base64-encoded)
-        // reader.readAsDataURL(formvalues.image);
     });
+
+
 
 
 

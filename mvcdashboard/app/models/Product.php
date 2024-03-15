@@ -28,10 +28,10 @@ class Product
 
             $name = $data['name'];
             $description = $data['description'];
-            // $image = $data['image'];
+            $image = $data['image'];
             $price = $data['price'];
-            $discount = $data['discount'];
             $quantity = $data['quantity'];
+            $discount = $data['discount'];
             $status_id = 1;
             $category_id = 1;
             $brand_id = 1;
@@ -39,10 +39,13 @@ class Product
 
 
 
-            $this->db->dbquery("INSERT INTO items(name,price,description,category_id,status_id,brand_id) VALUES(:name,:price,:description,:category,:status,:brand)");
-            // $this->db->dbbind(":image", $image);
+
+            $this->db->dbquery("INSERT INTO items(image,name,price,quantity,discount,description,category_id,status_id,brand_id) VALUES(:image,:name,:price,:quantity,:discount,:description,:category,:status,:brand)");
+            $this->db->dbbind(":image", $image);
             $this->db->dbbind(":name", $name);
             $this->db->dbbind(":price", $price);
+            $this->db->dbbind(":quantity", $quantity);
+            $this->db->dbbind(":discount", $discount);
             $this->db->dbbind(":description", $description);
             $this->db->dbbind(":category", $category_id);
             $this->db->dbbind(":status", $status_id);

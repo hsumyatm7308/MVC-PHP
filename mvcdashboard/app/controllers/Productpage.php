@@ -87,51 +87,33 @@ class Productpage extends Controller
         header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Authorization");
 
-        $post_data = json_decode($_POST['datas'], true);
+
+        $image = $_FILES['image'];
+        $uploaddir = IMG_UPLOAD . "/public/assets/items/";
+        $uploadfile = $uploaddir . basename($image['name']);
+
+        move_uploaded_file($image['tmp_name'], $uploadfile);
+
+        $insertimg = "/public/assets/items/" . basename($image['name']);
+
+        $data = [
+            "image" => $insertimg,
+            "name" => trim($_POST['name']),
+            "description" => trim($_POST['description']),
+            "price" => trim($_POST['price']),
+            "quantity" => trim($_POST['quantity']),
+            "discount" => trim($_POST['discount']),
+
+            "category_id" => trim($_POST['category_id']),
+            "status_id" => trim($_POST['status_id']),
+            "brand_id" => trim($_POST['status_id']),
+        ];
 
 
 
 
+        $this->mainmodel->createitems($data);
 
-
-
-
-
-
-        if ($post_data !== null) {
-            $name = $post_data['name'];
-            $description = $post_data['description'];
-            $image = $post_data['image'];
-            $price = $post_data['price'];
-            $discount = $post_data['discount'];
-            $quantity = $post_data['quantity'];
-            $status_id = 1;
-            $category_id = 1;
-            $brand_id = 1;
-
-            $data = [
-                "image" => $image,
-                "name" => $name,
-                "price" => $price,
-                "description" => $description,
-                "quantity" => $quantity,
-                "discount" => $discount,
-                "status_id" => $status_id,
-                "category_id" => $category_id,
-                "brand_id" => $brand_id
-            ];
-
-
-
-
-
-            $this->mainmodel->createitems($data);
-
-
-
-        } else {
-            echo json_encode(array('status' => 'error', 'message' => 'Invalid JSON data'));
-        }
 
 
 
