@@ -38,111 +38,6 @@
     }
 </style>
 
-<!-- 
-
-<div class="app-content">
-    <div class="app-content-header">
-        <h1 class="app-content-headerText text-gray-200">Products/create</h1>
-
-    </div>
-    <div class="app-content-actions ">
-
-        <div>
-            <button class="action-button p-3"><span>Cancle</span>
-
-        </div>
-
-    </div>
-    <div class="products-area-wrapper ">
-        <div class="products-row hover:bg-transparent">
-            <form action="" class="w-full " method="post" enctype="multipart/form-data">
-
-                <div class="w-full grid grid-cols-3 gap-5">
-                    <div class="w-full mb-3 bg-blue-400 mt-6">
-                        <label for="image" class="gallery h-full">Choose Image</label>
-
-                        <input type="file" name="image" id="image" class="" placeholder="Enter your image" value=""
-                            hidden />
-                    </div>
-
-
-                    <div class="col-span-2 ">
-
-                        <div class="w-full text-gray-200 grid grid-cols-2 gap-5">
-                            <div class="flex flex-col justify-s items-start ">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="w-full bg-[#1d283c] p-3"
-                                    placeholder="Enter your title">
-                            </div>
-
-                            <div class="flex flex-col justify-s items-start ">
-                                <label for="price">Price</label>
-                                <input type="number" name="price" id="price" class="w-full bg-[#1d283c] p-3"
-                                    placeholder="Enter your title">
-                            </div>
-
-                            <div class="col-span-2 flex flex-col justify-s items-start ">
-                                <label for="description">Description</label>
-                                <textarea name="description" id="description" class="w-full bg-[#1d283c] p-3"
-                                    rows="10"></textarea>
-                            </div>
-
-
-                            <div class="flex flex-col justify-s items-start ">
-                                <label for="brand">Brand</label>
-                                <input type="text" name="brand" id="brand" class="w-full bg-[#1d283c] p-3"
-                                    placeholder="Enter your title">
-                            </div>
-
-                            <div class="flex flex-col justify-s items-start ">
-                                <label for="category_id">Category</label>
-                                <input type="text" name="category_id" id="category_id" class="w-full bg-[#1d283c] p-3"
-                                    placeholder="Enter your title">
-                            </div>
-
-
-                            <div class="flex flex-col justify-s items-start ">
-                                <label for="status_id">Status</label>
-                                <input type="text" name="status_id" id="status_id" class="w-full bg-[#1d283c] p-3"
-                                    placeholder="Enter your title">
-                            </div>
-
-
-
-                            <div class="flex flex-col justify-s items-start ">
-                                <label for="count">Count</label>
-                                <input type="text" name="count" id="count" class="w-full bg-[#1d283c] p-3"
-                                    placeholder="Enter your title">
-                            </div>
-
-
-
-
-                            <div class="col-span-2 flex  justify-end items-center space-x-5">
-                                <button class="bg-gray-200 text-gray-500 p-3">Cancle</button>
-                                <button class="bg-blue-500 text-center p-3">Submit</button>
-                            </div>
-
-                        </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-
-</div>
-
-</div>
-
-</div>
-</div>
-</div> -->
-
-
-
-
 
 
 <div class="w-full text-black  flex justify-between items-center p-10 mb-5">
@@ -155,11 +50,9 @@
         </div>
     </div>
     <div>
-        <!-- <form action="" method="GET"> -->
         <span class="text-teal-50 bg-teal-500  transition-all duration-300  hover:bg-teal-600 rounded-md px-4 py-2 ">
             <button type="button" class="create_btn">Publish</button>
         </span>
-        <!-- </form> -->
     </div>
 
 </div>
@@ -171,17 +64,20 @@
             <div class="col-span-3 w-full bg-teal-100 rounded-md px-10 py-10 ">
                 <div class="w-full h-full space-y-5">
                     <div class="flex flex-col justify-center">
-                        <label for="name" class="text-teal-700">Product Title</label>
+                        <label for="name" class="text-teal-700">Product Title
+
+                        </label>
                         <input type="text" name="name" id="name"
-                            class="text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2"
+                            class="text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2 form-control"
                             placeholder="Title">
+
                     </div>
 
 
                     <div class="flex flex-col justify-center">
                         <label for="description" class="text-teal-700">Description</label>
                         <textarea name="description" id="description"
-                            class="text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 resize-none  px-3 py-3 mt-2 scrollbars"
+                            class="text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 resize-none  px-3 py-3 mt-2 scrollbars form-control"
                             cols="30" rows="10"></textarea>
                     </div>
                 </div>
@@ -192,13 +88,13 @@
                 <div class="w-full bg-teal-100 flex flex-col justify-center items-center rounded-md px-5 py-5">
                     <span class="text-teal-700 self-start mb-5">Product Photo</span>
                     <div
-                        class="w-full h-44 border border-teal-200 flex justify-center items-center rounded-md mb-5 gallery">
+                        class="w-full h-44 border border-teal-200 flex justify-center items-center rounded-md mb-5 gallery ">
 
                     </div>
                     <div class="w-full text-teal-50 bg-teal-500  transition-all duration-300   hover:bg-teal-600  py-2">
                         <label for="image" class="w-full text-center inline-block">Add Photo</label>
 
-                        <input type="file" name="image" id="image" hidden>
+                        <input type="file" name="image" id="image" class="form-control" hidden>
                     </div>
                 </div>
 
@@ -271,14 +167,14 @@
                             <div class="w-full grid grid-cols-3 items-center">
                                 <label for="price">Price:</label>
                                 <input type="number" name="price" id="price"
-                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2 "
+                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2  form-control"
                                     placeholder="Price">
                             </div>
                             <div class="w-full grid grid-cols-3 items-center">
                                 <label for="discount">Discount:</label>
                                 <input type="number" name="discount" id="discount"
                                     class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2 "
-                                    placeholder="Discount">
+                                    placeholder="Discount" value="0">
                             </div>
                         </div>
 
@@ -309,7 +205,7 @@
                             <div class="w-full grid grid-cols-3 items-center">
                                 <label for="quantity">Quantity:</label>
                                 <input type="number" name="quantity" id="quantity"
-                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-2 mt-2 "
+                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-2 mt-2 form-control"
                                     value="10">
                             </div>
 
@@ -424,30 +320,19 @@
 
 
     // all values from form
-    const createbtn = document.querySelector('.create_btn')
+    let form = document.getElementById('form');
+    const createbtn = document.querySelector('.create_btn');
+
 
 
     document.addEventListener('DOMContentLoaded', function () {
 
 
         createbtn.addEventListener('click', (e) => {
-            let form = document.getElementById('form');
-
 
             const formdata = new FormData(form);
-
-
-
             const imagefile = document.getElementById('image').files[0];
-
-
             formdata.append('image', imagefile)
-
-
-
-
-
-
 
             var xmlhttp = new XMLHttpRequest();
             var url = `http://localhost/mvc/mvcdashboard/productpage/store`;
@@ -469,15 +354,7 @@
                         allhasdata = false;
                     }
 
-
-                    if (allhasdata) {
-                        console.log("All values have data.");
-                        window.location.href = 'http://localhost/mvc/mvcdashboard/productpage';
-
-                    } else {
-                        console.log("Not all values have data.");
-                    }
-
+                    checkallhasdata(allhasdata)
                 }
             };
 
@@ -486,6 +363,43 @@
 
     });
 
+
+
+    function checkallhasdata(allhasdata) {
+        if (allhasdata) {
+
+            window.location.href = 'http://localhost/mvc/mvcdashboard/productpage';
+
+        } else {
+
+            const getinputs = document.querySelectorAll('.form-control');
+
+            const inputsArray = Array.from(getinputs);
+            var imgparent = inputsArray[2].parentElement.parentElement;
+
+            if (inputsArray[2].value == '') {
+                imgparent.children[1].classList.replace('border-teal-200', 'border-red-300')
+
+            } else {
+                imgparent.children[1].classList.replace('border-red-300', 'border-teal-200')
+
+            }
+
+            for (const input of inputsArray) {
+                const value = input.value;
+                if (value === '') {
+                    input.classList.add('border', 'border-red-300');
+
+                } else {
+                    input.classList.remove('border', 'border-red-300');
+
+                }
+            }
+
+
+        }
+
+    }
 
 
 
