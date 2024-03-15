@@ -145,7 +145,7 @@
                     <div class="w-full bg-teal-100 text-teal-900 rounded-md px-6 py-10">
                         <ul class="space-y-1 otherdetails_container_left">
                             <li
-                                class="w-full bg-teal-500 text-teal-50 transition-all duration-300 hover:bg-teal-500 hover:text-teal-50 rounded-md py-3 px-4 space-x-1 otherdetails_element_left">
+                                class="w-full  transition-all duration-300 hover:bg-teal-500 hover:text-teal-50 rounded-md py-3 px-4 space-x-1 otherdetails_element_left">
                                 <i class="fa-solid fa-stethoscope"></i>
                                 <span>General</span>
                             </li>
@@ -303,18 +303,32 @@
 
     // other details 
     let leftdetaileles = document.querySelectorAll('.otherdetails_element_left');
-    let rightdetailele = document.querySelectorAll('.otherdetails_element_right');
+    let rightdetaileles = document.querySelectorAll('.otherdetails_element_right');
 
     const indexes = [];
     const show = [...leftdetaileles].map((leftdetailele, idx) => {
+        leftdetaileles[0].classList.add('bg-teal-500', 'text-teal-50');
+
         leftdetailele.addEventListener('click', () => {
+
             const rest = indexes.filter(index => index !== idx);
-            rightdetailele[idx].classList.remove('hidden');
+
+            rightdetaileles[idx].classList.remove('hidden');
+            leftdetailele.classList.add('bg-teal-500', 'text-teal-50');
+
             rest.forEach(index => {
-                rightdetailele[index].classList.add('hidden');
+                rightdetaileles[index].classList.add('hidden');
+                leftdetaileles[index].classList.remove('bg-teal-500', 'text-teal-50');
+
             });
+
+
         });
+
+
+
         indexes.push(idx);
+
     });
 
 
