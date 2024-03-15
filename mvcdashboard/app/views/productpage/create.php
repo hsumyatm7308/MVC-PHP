@@ -60,7 +60,7 @@
 <div class="w-full px-10">
     <form id="form" action="" method="">
 
-        <div class="w-full grid grid-cols-4 gap-10">
+        <div class="w-full md:grid md:grid-cols-4 gap-10">
             <div class="col-span-3 w-full bg-teal-100 rounded-md px-10 py-10 ">
                 <div class="w-full h-full space-y-5">
                     <div class="flex flex-col justify-center">
@@ -84,7 +84,7 @@
 
             </div>
 
-            <div class="space-y-5">
+            <div class="space-y-5 md:mt-0 mt-5">
                 <div class="w-full bg-teal-100 flex flex-col justify-center items-center rounded-md px-5 py-5">
                     <span class="text-teal-700 self-start mb-5">Product Photo</span>
                     <div
@@ -129,7 +129,7 @@
 
 
 
-        <div class="w-full grid grid-cols-4 gap-10 mt-10">
+        <div class="w-full md:grid md:grid-cols-4 gap-10 mt-10">
             <div class="col-span-3 w-full bg-teal-100  rounded-md px-10 py-3 ">
                 <div class="w-full  space-y-5">
                     Other Details
@@ -141,7 +141,8 @@
         <div class="w-full grid grid-cols-4 gap-10 mt-10">
             <div class="col-span-3 w-full rounded-md py-10 ">
 
-                <div class="w-full grid grid-cols-3 gap-10">
+                <div class="w-full md:grid md:grid-cols-3 gap-10">
+
                     <div class="w-full bg-teal-100 text-teal-900 rounded-md px-6 py-10">
                         <ul class="space-y-1 otherdetails_container_left">
                             <li
@@ -162,7 +163,7 @@
                         </ul>
 
                     </div>
-                    <div class="col-span-2 otherdetails_container_right">
+                    <div class="col-span-2 md:mt-0 mt-5 otherdetails_container_right">
                         <div class="bg-teal-100 rounded-md px-10 py-10 space-y-5 otherdetails_element_right">
                             <div class="w-full grid grid-cols-3 items-center">
                                 <label for="price">Price:</label>
@@ -170,12 +171,15 @@
                                     class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2  form-control"
                                     placeholder="Price">
                             </div>
+
                             <div class="w-full grid grid-cols-3 items-center">
-                                <label for="discount">Discount:</label>
-                                <input type="number" name="discount" id="discount"
-                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2 "
-                                    placeholder="Discount" value="0">
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" name="quantity" id="quantity"
+                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-2 mt-2 form-control"
+                                    value="10">
                             </div>
+
+
                         </div>
 
                         <div class="bg-teal-100 rounded-md px-10 py-10 space-y-5 hidden otherdetails_element_right">
@@ -202,13 +206,14 @@
                             </div>
 
 
-                            <div class="w-full grid grid-cols-3 items-center">
-                                <label for="quantity">Quantity:</label>
-                                <input type="number" name="quantity" id="quantity"
-                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-2 mt-2 form-control"
-                                    value="10">
-                            </div>
 
+
+                            <div class="w-full grid grid-cols-3 items-center">
+                                <label for="discount">Discount:</label>
+                                <input type="number" name="discount" id="discount"
+                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2 "
+                                    placeholder="Discount" value="0">
+                            </div>
                         </div>
 
                         <div

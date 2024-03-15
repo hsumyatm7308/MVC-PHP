@@ -10,6 +10,7 @@ ini_set('display_errors', 1);
 
 
 
+<!-- <div class="w-full text-black  flex justify-between items-center p-10 mb-5"> -->
 <div class="w-full text-black  flex justify-between items-center p-10 mb-5">
     <div>
         <div>
@@ -27,120 +28,158 @@ ini_set('display_errors', 1);
     </div>
 
 </div>
-<div class="w-full px-10">
-
-    <div
-        class="w-full bg-teal-500 text-green-100 flex items-center grid grid-cols-8 rounded-tl-md rounded-tr-md px-10 py-4">
-        <div>
-            <h1>Id</h1>
-        </div>
-        <div>
-            <h1>Photo</h1>
-        </div>
-        <div class="">
-            <h1>Items</h1>
-        </div>
-
-        <div>
-            <h1>Status</h1>
-        </div>
 
 
-        <div>
-            <h1>Categories</h1>
-        </div>
+<div class="w-full px-10 overflow-x-auto ">
 
-        <div>
-            <h1>Price</h1>
-        </div>
+    <table class="w-full">
+        <thead class="w-full font-medium">
+            <td class="px-5 py-3">
+                <div>
+                    <h1>Id</h1>
+                </div>
+            </td>
+            <td class="px-5 py-3">
+                <div>
+                    <h1>Photo</h1>
+                </div>
+            </td>
+            <td class="px-5 py-3">
+                <div>
+                    <h1>Items</h1>
+                </div>
+            </td>
+            <td class="px-5 py-3">
+                <div>
+                    <h1>Status</h1>
+                </div>
+            </td>
 
-        <div>
-            <h1>Brand</h1>
-        </div>
+            <td class="px-5 py-3">
+                <div>
+                    <h1>Categories</h1>
+                </div>
+            </td>
+
+            <td class="px-5 py-3">
+                <div>
+                    <h1>Price</h1>
+                </div>
+            </td>
+
+            <td class="px-5 py-3">
+                <div>
+                    <h1>Brand</h1>
+                </div>
+            </td>
+
+            <td class="px-5 py-3">
+                <div>
+                    <h1>Quantity</h1>
+                </div>
+            </td>
 
 
+            <td class="px-5 py-3">
+                <div>
+                    <h1>Acion</h1>
+                </div>
+            </td>
+
+        </thead>
+
+        <?php foreach ($data['items'] as $id => $item): ?>
 
 
-        <div>
-            <h1>Action</h1>
-        </div>
-    </div>
-
-</div>
-
-
-<?php foreach ($data['items'] as $id => $item): ?>
-
-
-
-
-
-
-    <div class="w-full px-10 ">
-        <div class="w-full h-full grid grid-cols-8 px-10 py-2  space-y-2  
+            <tbody class="w-full border-collapse border-t border-slate-100
             <?php
             if (!is_even($id)) {
                 echo "bg-teal-50";
             } else {
                 echo "";
             }
-            ?> ">
+            ?> 
+                ">
+                <td class="px-5 py-3">
+                    <div>
+                        <?php echo ++$id; ?>
+                    </div>
+                </td>
+                <td class="px-5 py-3">
+                    <div>
+                        <div class="w-10 h-10 rounded-md overflow-hidden">
+                            <img src="<?php echo URLROOT; ?><?php echo $item['image'] ?>" alt="" class="w-20">
+                        </div>
+                    </div>
+                </td>
+                <td class="px-5 py-3">
+                    <div>
+                        <?php echo $item['name'] ?>
+                    </div>
+                </td>
+                <td class="px-5 py-3">
+                    <div>
+                        <!-- <?php echo $item['status_id'] ?> -->
+
+                        <?php
+                        if (is_even($id)) {
+                            echo '<span class="text-teal-700 text-xs"> In stock </span>';
+                        } else {
+                            echo '<span class="text-red-700 text-xs"> Out of stock </span>';
+                        }
+                        ?>
+                    </div>
+                </td>
+
+                <td class="px-5 py-3">
+                    <div>
+                        <?php echo $item['category_id'] ?>
+                    </div>
+                </td>
+
+                <td class="px-5 py-3">
+                    <div>
+                        <?php echo $item['price'] ?>
+                    </div>
+                </td>
+
+                <td class="px-5 py-3">
+                    <div>
+                        <?php echo $item['brand_id']; ?>
+                    </div>
+                </td>
+
+                <td class="px-5 py-3">
+                    <div>
+                        <?php echo $item['quantity']; ?>
+                    </div>
+                </td>
+
+
+                <td class="px-5 py-3">
+                    <div class="text-teal-50 flex items-center space-x-2">
+                        <div class="bg-teal-100 text-teal-500 rounded-sm hover:bg-green-300">
+                            <a href="" class="w-full px-3">Edit</a>
+                        </div>
+                        <div class="bg-red-600 rounded-sm hover:bg-red-500">
+                            <button type="button" class="w-full px-3">Del</button>
+                        </div>
+                    </div>
+                </td>
+            </tbody>
+
+        <?php endforeach; ?>
+
+        <tfoot>
+
+        </tfoot>
+    </table>
+
+</div>
 
 
 
-            <div class="flex justify-start items-center space-x-2">
-                <?php echo ++$id; ?>
-            </div>
-            <div class="flex justify-start items-center space-x-2">
-                <div class="w-10 h-10 rounded-md overflow-hidden">
-                    <img src="<?php echo URLROOT; ?><?php echo $item['image'] ?>" alt="" class="w-20">
-                </div>
-            </div>
 
-            <div class="flex justify-start items-center space-x-2">
-                <div>
-                    <?php echo $item['name'] ?>
-                </div>
-            </div>
-
-            <div class="flex justify-start items-center space-x-2">
-                <!-- <?php echo $item['status_id'] ?> -->
-
-                <?php
-                if (is_even($id)) {
-                    echo '<span class="text-teal-700 text-sm"> In stock </span>';
-                } else {
-                    echo '<span class="text-red-700 text-sm"> Out of stock </span>';
-                }
-                ?>
-
-            </div>
-
-            <div class="flex justify-start items-center space-x-2">
-                <?php echo $item['category_id'] ?>
-            </div>
-
-            <div class="flex justify-start items-center space-x-2">
-                <?php echo $item['price'] ?>
-            </div>
-
-            <div class="flex justify-start items-center space-x-2">
-                <?php echo $item['brand_id']; ?>
-            </div>
-
-
-
-            <div class="text-teal-50 flex items-center space-x-2">
-                <div class="bg-teal-100 text-teal-500 rounded-sm hover:bg-green-300">
-                    <a href="" class="w-full px-3">Edit</a>
-                </div>
-                <div class="bg-red-600 rounded-sm hover:bg-red-500">
-                    <button type="button" class="w-full px-3">Del</button>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php endforeach; ?>
 </div>
 
 <!-- <div class="app-content">
