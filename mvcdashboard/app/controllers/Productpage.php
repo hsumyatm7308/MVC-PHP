@@ -19,10 +19,7 @@ class Productpage extends Controller
 
 
         $data = [
-
             'items' => $items
-
-
         ];
 
         $this->view('productpage/index', $data);
@@ -118,6 +115,13 @@ class Productpage extends Controller
 
 
 
+    }
+
+    public function edit()
+    {
+        $this->mainmodel->edit();
+
+        $this->view('productpage/index');
     }
 
 

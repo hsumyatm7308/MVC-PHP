@@ -66,6 +66,15 @@ class Product
 
     }
 
+    public function edit($productid)
+    {
+        $this->db->dbquery('SELECT * FROM items WHERE id = :productid');
+        $this->db->dbbind(":productid", $productid);
+        $this->db->dbexecute();
+
+        return $this->db->getsingledata();
+    }
+
 }
 
 

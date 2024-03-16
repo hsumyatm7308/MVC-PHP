@@ -158,8 +158,14 @@ ini_set('display_errors', 1);
 
                 <td class="px-5 py-3">
                     <div class="text-teal-50 flex items-center space-x-2">
-                        <div class="bg-teal-100 text-teal-500 rounded-sm hover:bg-green-300">
-                            <a href="" class="w-full px-3">Edit</a>
+                        <div class="bg-teal-100 text-teal-500 rounded-sm hover:bg-green-300 editbtn">
+                            <a href="javascript:void(0)" class="w-full px-3" data-id="<?php echo $item['id'] ?>"
+                                data-name="<?php echo $item['name'] ?>"
+                                data-description="<?php echo $item['description'] ?>"
+                                data-status="<?php echo $item['status_id'] ?>"
+                                data-category="<?php echo $item['category_id'] ?>" data-price="<?php echo $item['price'] ?>"
+                                data-brand="<?php echo $item['brand_id'] ?>"
+                                data-quantity="<?php echo $item['quantity'] ?>">Edit</a>
                         </div>
                         <div class="bg-red-600 rounded-sm hover:bg-red-500">
                             <button type="button" class="w-full px-3">Del</button>
@@ -182,436 +188,537 @@ ini_set('display_errors', 1);
 
 </div>
 
-<!-- <div class="app-content">
-    <div class="app-content-header">
-        <h1 class="app-content-headerText">Products</h1>
-        <button class="mode-switch" title="Switch Theme">
-            <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
-                <defs></defs>
-                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-            </svg>
-        </button>
-        <a href="<?php echo URLROOT; ?>/productpage/create">
-            <button class="app-content-headerButton">Add Product</button>
-        </a>
-    </div>
-    <div class="app-content-actions">
-        <input class="search-bar" placeholder="Search..." type="text">
-        <div class="app-content-actions-wrapper">
-            <div class="filter-button-wrapper">
-                <button class="action-button filter jsFilter"><span>Filter</span><svg xmlns="http://www.w3.org/2000/svg"
-                        width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter">
-                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-                    </svg></button>
-                <div class="filter-menu">
-                    <label>Category</label>
-                    <select>
-                        <option>All Categories</option>
-                        <option>Furniture</option>
-                        <option>Decoration</option>
-                        <option>Kitchen</option>
-                        <option>Bathroom</option>
-                    </select>
-                    <label>Status</label>
-                    <select>
-                        <option>All Status</option>
-                        <option>Active</option>
-                        <option>Disabled</option>
-                    </select>
-                    <div class="filter-menu-buttons">
-                        <button class="filter-button reset">
-                            Reset
-                        </button>
-                        <button class="filter-button apply">
-                            Apply
-                        </button>
+
+
+
+
+
+
+<div id="editmodal" class="w-full h-auto hidden ">
+    <div class="w-full h-screen flex justify-center items-center bg-[linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.1))]  overflow-x-auto  absolute left-0 top-0 z-20 py-10"
+        onclick="document.getElementById('editmodal').classList.add('hidden')">
+
+        <form id="form" action="" method="" class="w-full bg-slate-100 rounded-md shadow-lg  p-10 scale-75">
+
+            <div>
+
+                <div class=" w-full text-black flex justify-between items-center mb-10">
+                    <div>
+                        <div>
+                            <h1 class="text-2xl">Edit Product </h1>
+                        </div>
+
+                    </div>
+                    <div class="space-x-3">
+                        <span
+                            class="text-slate-500 bg-slate-200  transition-all duration-300  hover:bg-teal-600 rounded-md px-4 py-2 "
+                            onclick="document.getElementById('editmodal').classList.add('hidden')">
+                            <button type="button" class="create_btn">Cancel</button>
+                        </span>
+                        <span
+                            class="text-teal-50 bg-teal-500  transition-all duration-300  hover:bg-teal-600 rounded-md px-4 py-2 ">
+                            <button type="button" class="create_btn">Update</button>
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="w-auto h md:grid md:grid-cols-4 gap-10">
+                    <div class="col-span-3 w-full  ">
+                        <div class="w-full h-full bg-slate-200 rounded-md px-10 py-10 space-y-5">
+                            <div class="flex flex-col justify-center">
+                                <label for="name" class="text-teal-700">Product Title
+
+                                </label>
+                                <input type="text" name="name" id="editname"
+                                    class="text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2 form-control"
+                                    placeholder="Title">
+
+                            </div>
+
+
+                            <div class="flex flex-col justify-center">
+                                <label for="editdescription" class="text-teal-700">Description</label>
+                                <textarea name="description" id="editdescription"
+                                    class="text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 resize-none  px-3 py-3 mt-2 scrollbars form-control"
+                                    cols="30" rows="10"></textarea>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="space-y-5 md:mt-0 mt-5">
+                        <div class="w-full bg-slate-200 flex flex-col justify-center items-center rounded-md px-5 py-5">
+                            <span class="text-teal-700 self-start mb-5">Product Photo</span>
+                            <div
+                                class="w-full h-44 border border-teal-200 flex justify-center items-center rounded-md mb-5 gallery ">
+
+                            </div>
+                            <div
+                                class="w-full text-teal-50 bg-teal-500  transition-all duration-300   hover:bg-teal-600  py-2">
+                                <label for="editimage" class="w-full text-center inline-block">Add Photo</label>
+
+                                <input type="file" name="image" id="editimage" class="form-control" hidden>
+                            </div>
+                        </div>
+
+                        <div class="w-full bg-slate-200 flex flex-col justify-center items-center rounded-md px-5 py-5">
+                            <span class="text-teal-700 self-start mb-5">Category</span>
+
+
+                            <div class="w-full relative custom-select">
+                                <select name="category_id" id="editcategory_id"
+                                    class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                </select>
+
+                                <div
+                                    class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-red-600">
+                                    <svg class="w-4 h-4 fill-current text-gray-500" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M10 12.586L5.707 8.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 12.586z" />
+                                    </svg>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="w-full bg-slate-200 flex flex-col justify-center items-center rounded-md px-5 py-5">
+                            <span class="text-teal-700 self-start mb-5">Brand</span>
+
+
+                            <div class="w-full relative custom-select">
+                                <select name="brand_id" id="editbrand_id"
+                                    class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                </select>
+
+                                <div
+                                    class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-red-600">
+                                    <svg class="w-4 h-4 fill-current text-gray-500" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M10 12.586L5.707 8.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 12.586z" />
+                                    </svg>
+                                </div>
+                            </div>
+
+
+                        </div>
+
                     </div>
                 </div>
-            </div>
-            <button class="action-button list active" title="List View">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-list">
-                    <line x1="8" y1="6" x2="21" y2="6" />
-                    <line x1="8" y1="12" x2="21" y2="12" />
-                    <line x1="8" y1="18" x2="21" y2="18" />
-                    <line x1="3" y1="6" x2="3.01" y2="6" />
-                    <line x1="3" y1="12" x2="3.01" y2="12" />
-                    <line x1="3" y1="18" x2="3.01" y2="18" />
-                </svg>
-            </button>
-            <button class="action-button grid" title="Grid View">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-grid">
-                    <rect x="3" y="3" width="7" height="7" />
-                    <rect x="14" y="3" width="7" height="7" />
-                    <rect x="14" y="14" width="7" height="7" />
-                    <rect x="3" y="14" width="7" height="7" />
-                </svg>
-            </button>
-        </div>
-    </div>
-    <div class="products-area-wrapper tableView">
-        <div class="products-header">
-            <div class="product-cell image">
-                Items
-                <button class="sort-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                        <path fill="currentColor"
-                            d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                    </svg>
-                </button>
-            </div>
-            <div class="product-cell category">Category<button class="sort-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                        <path fill="currentColor"
-                            d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                    </svg>
-                </button></div>
-            <div class="product-cell status-cell">Status<button class="sort-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                        <path fill="currentColor"
-                            d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                    </svg>
-                </button></div>
-            <div class="product-cell sales">Sales<button class="sort-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                        <path fill="currentColor"
-                            d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                    </svg>
-                </button></div>
-            <div class="product-cell stock">Stock<button class="sort-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                        <path fill="currentColor"
-                            d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                    </svg>
-                </button></div>
-            <div class="product-cell price">Price<button class="sort-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
-                        <path fill="currentColor"
-                            d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z" />
-                    </svg>
-                </button></div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-                    alt="product">
-                <span>Ocean</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Furniture</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status active">Active</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>11</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>36</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$560</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8a2l0Y2hlbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Lou</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Kitchen</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status disabled">Disabled</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>6</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>46</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$710</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Yellow</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Decoration</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status active">Active</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>61</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>56</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$360</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YmVkcm9vbXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Dreamy</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Bedroom</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status disabled">Disabled</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>41</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>66</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$260</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aW50ZXJpb3J8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Boheme</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Furniture</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status active">Active</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>32</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>40</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$350</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Sky</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Bathroom</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status disabled">Disabled</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>22</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>44</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$160</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Midnight</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Furniture</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status active">Active</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>23</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>45</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$340</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aW50ZXJpb3J8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Boheme</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Furniture</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status active">Active</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>32</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>40</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$350</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1511389026070-a14ae610a1be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fGludGVyaW9yfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Palm</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Decoration</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status active">Active</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>24</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>46</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$60</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Forest</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Living Room</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status active">Active</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>41</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>16</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$270</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Njd8fGludGVyaW9yfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Sand</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Living Room</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status disabled">Disabled</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>52</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>16</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$230</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1533779283484-8ad4940aa3a8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODd8fGludGVyaW9yfGVufDB8MHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Autumn</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Decoration</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status active">Active</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>21</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>46</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$252</div>
-        </div>
-        <div class="products-row">
-            <button class="cell-more-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="feather feather-more-vertical">
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="12" cy="5" r="1" />
-                    <circle cx="12" cy="19" r="1" />
-                </svg>
-            </button>
-            <div class="product-cell image">
-                <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8aW50ZXJpb3J8ZW58MHwwfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
-                    alt="product">
-                <span>Boheme</span>
-            </div>
-            <div class="product-cell category"><span class="cell-label">Category:</span>Furniture</div>
-            <div class="product-cell status-cell">
-                <span class="cell-label">Status:</span>
-                <span class="status active">Active</span>
-            </div>
-            <div class="product-cell sales"><span class="cell-label">Sales:</span>32</div>
-            <div class="product-cell stock"><span class="cell-label">Stock:</span>40</div>
-            <div class="product-cell price"><span class="cell-label">Price:</span>$350</div>
-        </div>
-    </div>
-</div>
-</div> -->
 
+
+
+
+                <div class="w-full md:grid md:grid-cols-4 gap-10 mt-10">
+                    <div class="col-span-3 w-full bg-slate-200  rounded-md px-10 py-3 ">
+                        <div class="w-full  space-y-5">
+                            Other Details
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="w-full grid grid-cols-4 gap-10 mt-10 ">
+                    <div class="col-span-3 w-full rounded-md py-200 ">
+
+                        <div class="w-full md:grid md:grid-cols-3 gap-10">
+
+                            <div class="w-full bg-slate-200 text-teal-900 rounded-md px-6 py-10">
+                                <ul class="space-y-1 otherdetails_container_left">
+                                    <li
+                                        class="w-full  transition-all duration-300 hover:bg-teal-500 hover:text-teal-50 rounded-md py-3 px-4 space-x-1 otherdetails_element_left">
+                                        <i class="fa-solid fa-stethoscope"></i>
+                                        <span>General</span>
+                                    </li>
+                                    <li
+                                        class="w-full  transition-all duration-300 hover:bg-teal-500 hover:text-teal-50 rounded-md py-3 px-4 space-x-1 otherdetails_element_left">
+                                        <i class="fa-solid fa-layer-group"></i>
+                                        <span>Stock</span>
+                                    </li>
+                                    <li
+                                        class="w-full transition-all duration-300 hover:bg-teal-500 hover:text-teal-50 rounded-md py-3 px-4 space-x-1 otherdetails_element_left">
+                                        <i class="fa-solid fa-truck-fast"></i>
+                                        <span>Shipping</span>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="col-span-2 md:mt-0 mt-5 otherdetails_container_right">
+                                <div class="bg-slate-200 rounded-md px-10 py-10 space-y-5 otherdetails_element_right">
+                                    <div class="w-full grid grid-cols-3 items-center">
+                                        <label for="editprice">Price:</label>
+                                        <input type="number" name="price" id="editprice"
+                                            class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2  form-control"
+                                            placeholder="Price">
+                                    </div>
+
+                                    <div class="w-full grid grid-cols-3 items-center">
+                                        <label for="editquantity">Quantity:</label>
+                                        <input type="number" name="quantity" id="editquantity"
+                                            class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2  form-control"
+                                            placeholder="Price">
+                                    </div>
+
+
+                                </div>
+
+                                <div class=" bg-slate-200 rounded-md px-10 py-10 space-y-5 hidden
+                                        otherdetails_element_right">
+
+                                    <div class="w-full grid grid-cols-3 items-center">
+                                        <label for="">Stock Status:</label>
+
+                                        <div class="col-span-2 w-full relative custom-select">
+                                            <select name="status_id" id="editstatus_id"
+                                                class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
+                                                <option>In Stock</option>
+                                                <option>Out Of Stock</option>
+                                            </select>
+
+                                            <div
+                                                class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-red-600">
+                                                <svg class="w-4 h-4 fill-current text-gray-500" viewBox="0 0 20 20"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M10 12.586L5.707 8.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 12.586z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="w-full grid grid-cols-3 items-center">
+                                        <label for="editdiscount">Discount:</label>
+                                        <input type="number" name="discount" id="editdiscount"
+                                            class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2 "
+                                            placeholder="Discount" value="0">
+                                    </div>
+                                </div>
+
+
+                                <div
+                                    class="w-full bg-slate-200 rounded-md px-10 py-10 space-y-5 hidden otherdetails_element_right">
+
+                                    <div class="w-full grid grid-cols-3 items-center">
+                                        <label for="editshipping">Shipping:</label>
+
+                                        <div class="col-span-2 w-full relative custom-select">
+                                            <select name="shipping" id="editshipping"
+                                                class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
+                                                <option>No Shipping</option>
+                                                <option>Free Shipping</option>
+                                            </select>
+
+                                            <div
+                                                class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-red-600">
+                                                <svg class="w-4 h-4 fill-current text-gray-500" viewBox="0 0 20 20"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M10 12.586L5.707 8.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 12.586z" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="w-full grid grid-cols-3 items-start">
+                                        <label for="editremark">Remark:</label>
+                                        <textarea type="text" name="editremark" id="remark"
+                                            class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 resize-none px-3 py-3 mt-2 "
+                                            placeholder="Remark"></textarea>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+</div>
 
 
 <?php require APPROOT . '/views/layouts/footer.php'; ?>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+
+
+
+
+    $(document).ready(function () {
+
+        var previewimages = function (input, output) {
+
+            if (input.files) {
+                var totalfiles = input.files.length;
+
+                if (totalfiles > 0) {
+                    $('.gallery').addClass('removetext');
+                } else {
+                    $(".gallery").removeClass('removetext');
+                }
+
+                for (var i = 0; i < totalfiles; i++) {
+                    var filereader = new FileReader();
+                    filereader.onload = function (e) {
+                        $(output).html(""); $($.parseHTML("<img>")).attr("src", e.target.result).appendTo(output);
+                    }
+                    filereader.readAsDataURL(input.files[i]);
+
+                    console.log(filereader.readAsDataURL(input.files[i]));
+                }
+            }
+        };
+
+        // for single image
+
+        $("#image").change(function () {
+            previewimages(this, ".gallery");
+        })
+
+    });
+
+
+    // other details 
+    let leftdetaileles = document.querySelectorAll('.otherdetails_element_left');
+    let rightdetaileles = document.querySelectorAll('.otherdetails_element_right');
+
+    const indexes = [];
+    const show = [...leftdetaileles].map((leftdetailele, idx) => {
+        leftdetaileles[0].classList.add('bg-teal-500', 'text-teal-50');
+
+        leftdetailele.addEventListener('click', () => {
+
+            const rest = indexes.filter(index => index !== idx);
+
+            rightdetaileles[idx].classList.remove('hidden');
+            leftdetailele.classList.add('bg-teal-500', 'text-teal-50');
+
+            rest.forEach(index => {
+                rightdetaileles[index].classList.add('hidden');
+                leftdetaileles[index].classList.remove('bg-teal-500', 'text-teal-50');
+
+            });
+
+
+        });
+
+
+
+        indexes.push(idx);
+
+    });
+
+
+
+    // all values from form
+    // let form = document.getElementById('form');
+    // const createbtn = document.querySelector('.create_btn');
+
+
+
+    // document.addEventListener('DOMContentLoaded', function () {
+
+
+    //     createbtn.addEventListener('click', (e) => {
+
+    //         const formdata = new FormData(form);
+    //         const imagefile = document.getElementById('image').files[0];
+    //         formdata.append('image', imagefile)
+
+    //         var xmlhttp = new XMLHttpRequest();
+    //         var url = `http://localhost/mvc/mvcdashboard/productpage/store`;
+    //         xmlhttp.open("POST", url, true);
+    //         xmlhttp.onreadystatechange = function (e) {editbtn
+    //             if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
+    //                 var result = xmlhttp.response;
+
+    //                 let allhasdata = true;
+
+    //                 for (const [name, value] of formdata.entries()) {
+    //                     if (!value) {
+    //                         allhasdata = false;
+    //                         break;
+    //                     }
+    //                 }
+
+    //                 if (!imagefile) {
+    //                     allhasdata = false;
+    //                 }
+
+    //                 checkallhasdata(allhasdata)
+    //             }
+    //         };
+
+    //         xmlhttp.send(formdata);
+    //     });
+
+    // });
+
+
+
+    // function checkallhasdata(allhasdata) {
+    //     if (allhasdata) {
+
+    //         window.location.href = 'http://localhost/mvc/mvcdashboard/productpage';
+
+    //     } else {
+
+    //         const getinputs = document.querySelectorAll('.form-control');
+
+    //         const inputsArray = Array.from(getinputs);
+    //         var imgparent = inputsArray[2].parentElement.parentElement;
+
+    //         if (inputsArray[2].value == '') {
+    //             imgparent.children[1].classList.replace('border-teal-200', 'border-red-300')
+
+    //         } else {
+    //             imgparent.children[1].classList.replace('border-red-300', 'border-teal-200')
+
+    //         }
+
+    //         for (const input of inputsArray) {
+    //             const value = input.value;
+    //             if (value === '') {
+    //                 input.classList.add('border', 'border-red-300');
+
+    //             } else {
+    //                 input.classList.remove('border', 'border-red-300');
+
+    //             }
+    //         }
+
+
+    //     }
+
+    // }
+
+
+    let editbtn = document.querySelectorAll('.editbtn');
+
+    editbtn.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+
+            document.getElementById('editmodal').classList.remove('hidden');
+
+
+            let element = e.target;
+
+            let attributes = element.attributes;
+
+
+            let productid = attributes['data-id'];
+            let status = attributes['data-status'];
+            let category = attributes['data-category'];
+            let name = attributes['data-name'];
+            let price = attributes['data-price'];
+            let brand = attributes['data-brand'];
+            let quantity = attributes['data-quantity'];
+            let description = attributes['data-description'];
+
+            console.log(description.value)
+
+
+
+            document.getElementById('editname').setAttribute('value', name.value);
+            document.getElementById('editstatus_id').setAttribute('value', status.value);
+            document.getElementById('editcategory_id').setAttribute('value', category.value);
+            document.getElementById('editprice').setAttribute('value', price.value);
+            document.getElementById('editbrand_id').setAttribute('value', brand.value);
+            document.getElementById('editdescription').innerHTML = `${description.value}`;
+
+            document.getElementById('editquantity').setAttribute('value', quantity.value);
+
+
+
+
+
+        });
+    });
+
+
+    function setattribute(key, value) {
+        let inputelements = form.getElementsByTagName('input');
+
+
+
+    }
+
+
+    // document.addEventListener('DOMContentLoaded', function () {
+
+
+    //     createbtn.addEventListener('click', (e) => {
+
+    //         const formdata = new FormData(form);
+    //         const imagefile = document.getElementById('image').files[0];
+    //         formdata.append('image', imagefile)
+
+    //         var xmlhttp = new XMLHttpRequest();
+    //         var url = `http://localhost/mvc/mvcdashboard/productpage/store`;
+    //         xmlhttp.open("POST", url, true);
+    //         xmlhttp.onreadystatechange = function (e) {editbtn
+    //             if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
+    //                 var result = xmlhttp.response;
+
+    //                 let allhasdata = true;
+
+    //                 for (const [name, value] of formdata.entries()) {
+    //                     if (!value) {
+    //                         allhasdata = false;
+    //                         break;
+    //                     }
+    //                 }
+
+    //                 if (!imagefile) {
+    //                     allhasdata = false;
+    //                 }
+
+    //                 checkallhasdata(allhasdata)
+    //             }
+    //         };
+
+    //         xmlhttp.send(formdata);
+    //     });
+
+    // });
+
+
+
+
+</script>
