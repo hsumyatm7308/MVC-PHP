@@ -117,13 +117,31 @@ class Productpage extends Controller
 
     }
 
-    public function edit()
+
+
+
+    public function update()
     {
-        $this->mainmodel->edit();
+        //  left remark 
 
-        $this->view('productpage/index');
+        $data = [
+            "productid" => $_POST['productid'],
+            // "image" => $insertimg,
+            "name" => trim($_POST['name']),
+            "description" => trim($_POST['description']),
+            "price" => trim($_POST['price']),
+            "quantity" => trim($_POST['quantity']),
+            "discount" => trim($_POST['discount']),
+
+            "category_id" => trim($_POST['category_id']),
+            "status_id" => trim($_POST['status_id']),
+            "brand_id" => trim($_POST['status_id']),
+
+        ];
+
+        $this->mainmodel->updateitems($data);
+
     }
-
 
 }
 

@@ -276,8 +276,12 @@
 
         var previewimages = function (input, output) {
 
+
+
             if (input.files) {
                 var totalfiles = input.files.length;
+
+                console.log(totalfiles);
 
                 if (totalfiles > 0) {
                     $('.gallery').addClass('removetext');

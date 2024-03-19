@@ -66,13 +66,62 @@ class Product
 
     }
 
-    public function edit($productid)
-    {
-        $this->db->dbquery('SELECT * FROM items WHERE id = :productid');
-        $this->db->dbbind(":productid", $productid);
-        $this->db->dbexecute();
+    // public function edit($productid)
+    // {
+    //     $this->db->dbquery('SELECT * FROM items WHERE id = :productid');
+    //     $this->db->dbbind(":productid", $productid);
+    //     $this->db->dbexecute();
 
-        return $this->db->getsingledata();
+    //     return $this->db->getsingledata();
+    // }
+
+    public function updateitems($data)
+    {
+
+        try {
+
+
+
+            $productid = $data['productid'];
+            $name = $data['name'];
+            $description = $data['description'];
+            // $image = $data['image'];
+            $price = $data['price'];
+            $quantity = $data['quantity'];
+            $discount = $data['discount'];
+            $status_id = 1;
+            $category_id = 1;
+            $brand_id = 1;
+
+
+            echo $quantity;
+
+            // $this->db->dbquery("UPDATE items SET name = :name,price = :price,quantity = :quantity,discount = :discount,description = :description,category_id = :category,status_id=:status,brand_id=:brand WHERE id = :id");
+
+
+
+            // $this->db->dbbind(":image", $image);
+            // $this->db->dbbind(":name", $name);
+            // $this->db->dbbind(":price", $price);
+            // $this->db->dbbind(":quantity", $quantity);
+            // $this->db->dbbind(":discount", $discount);
+            // $this->db->dbbind(":description", $description);
+            // $this->db->dbbind(":category", $category_id);
+            // $this->db->dbbind(":status", $status_id);
+            // $this->db->dbbind(":brand", $brand_id);
+            // $this->db->dbbind(':id', $productid);
+
+            // $this->db->dbexecute();
+
+
+
+
+
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
     }
 
 }
