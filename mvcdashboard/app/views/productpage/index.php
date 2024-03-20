@@ -642,8 +642,13 @@ ini_set('display_errors', 1);
             var getattr = e.target;
 
             const formdata = new FormData(form);
-            // const imagefile = document.getElementById('editimage').files[0];
-            // formdata.append('image', imagefile);
+
+
+
+            const imagefile = document.getElementById('editimage').files[0];
+            if (imagefile) {
+                formdata.append('image', imagefile);
+            }
 
             const productid = getattr.attributes['data-id'].value;
             formdata.append('productid', productid);
@@ -657,6 +662,7 @@ ini_set('display_errors', 1);
                     var result = xmlhttp.response;
 
                     console.log(result)
+                    document.getElementById('editmodal').classList.toggle('hidden');
 
                     // let allhasdata = true;
 

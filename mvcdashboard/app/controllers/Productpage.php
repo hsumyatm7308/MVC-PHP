@@ -124,9 +124,26 @@ class Productpage extends Controller
     {
         //  left remark 
 
+
+
+
+        $image = $_FILES['image'];
+        $uploaddir = IMG_UPLOAD . "/public/assets/items/";
+        $uploadfile = $uploaddir . basename($image['name']);
+
+        move_uploaded_file($image['tmp_name'], $uploadfile);
+
+        $insertimg = "/public/assets/items/" . basename($image['name']);
+
+
+        $oldimage = $this->mainmodel->image($_POST['productid'])['image'];
+
+        $img = $image['name'] ? $insertimg : $oldimage;
+
+
         $data = [
             "productid" => $_POST['productid'],
-            // "image" => $insertimg,
+            "image" => $img,
             "name" => trim($_POST['name']),
             "description" => trim($_POST['description']),
             "price" => trim($_POST['price']),
