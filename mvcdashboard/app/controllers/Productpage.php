@@ -156,7 +156,11 @@ class Productpage extends Controller
 
         ];
 
+
+
         $this->mainmodel->updateitems($data);
+        $jsonData = json_encode($data);
+        echo $jsonData;
 
     }
 

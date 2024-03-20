@@ -100,78 +100,79 @@ ini_set('display_errors', 1);
             }
             ?> 
                 ">
-                <td class="px-5 py-3">
-                    <div>
-                        <?php echo ++$id; ?>
-                    </div>
-                </td>
-                <td class="px-5 py-3">
-                    <div>
+                <tr class="product_list" data-tr-id=<?php echo $item['id'] ?>>
+                    <td class="px-5 py-3">
+                        <div>
+                            <?php echo ++$id; ?>
+                        </div>
+                    </td>
+                    <td class="px-5 py-3">
                         <div class="w-10 h-10 rounded-md overflow-hidden">
                             <img src="<?php echo URLROOT; ?><?php echo $item['image'] ?>" alt="" class="w-20">
                         </div>
-                    </div>
-                </td>
-                <td class="px-5 py-3">
-                    <div>
-                        <?php echo $item['name'] ?>
-                    </div>
-                </td>
-                <td class="px-5 py-3">
-                    <div>
-                        <!-- <?php echo $item['status_id'] ?> -->
-
-                        <?php
-                        if (is_even($id)) {
-                            echo '<span class="text-teal-700 text-xs"> In stock </span>';
-                        } else {
-                            echo '<span class="text-red-700 text-xs"> Out of stock </span>';
-                        }
-                        ?>
-                    </div>
-                </td>
-
-                <td class="px-5 py-3">
-                    <div>
-                        <?php echo $item['category_id'] ?>
-                    </div>
-                </td>
-
-                <td class="px-5 py-3">
-                    <div>
-                        <?php echo $item['price'] ?>
-                    </div>
-                </td>
-
-                <td class="px-5 py-3">
-                    <div>
-                        <?php echo $item['brand_id']; ?>
-                    </div>
-                </td>
-
-                <td class="px-5 py-3">
-                    <div>
-                        <?php echo $item['quantity']; ?>
-                    </div>
-                </td>
-
-
-                <td class="px-5 py-3">
-                    <div class="text-teal-50 flex items-center space-x-2">
-                        <div class="bg-teal-100 text-teal-500 rounded-sm hover:bg-green-300 editbtn">
-                            <a href="javascript:void(0)" class="w-full px-3" data-id="<?php echo $item['id'] ?>"
-                                data-name="<?php echo $item['name'] ?>"
-                                data-description="<?php echo $item['description'] ?>"
-                                data-status="<?php echo $item['status_id'] ?>"
-                                data-category="<?php echo $item['category_id'] ?>" data-price="<?php echo $item['price'] ?>"
-                                data-brand="<?php echo $item['brand_id'] ?>" data-quantity="<?php echo $item['quantity'] ?>"
-                                data-image="<?php echo URLROOT; ?><?php echo $item['image'] ?>">Edit</a>
+                    </td>
+                    <td class="px-5 py-3">
+                        <div>
+                            <?php echo $item['name'] ?>
                         </div>
-                        <div class=" bg-red-600 rounded-sm hover:bg-red-500">
-                            <button type="button" class="w-full px-3">Del</button>
+                    </td>
+                    <td class="px-5 py-3">
+                        <div>
+                            <!-- <?php echo $item['status_id'] ?> -->
+
+                            <?php
+                            if (is_even($id)) {
+                                echo '<span class="text-teal-700 text-xs"> In stock </span>';
+                            } else {
+                                echo '<span class="text-red-700 text-xs"> Out of stock </span>';
+                            }
+                            ?>
                         </div>
-                    </div>
-                </td>
+                    </td>
+
+                    <td class="px-5 py-3">
+                        <div>
+                            <?php echo $item['category_id'] ?>
+                        </div>
+                    </td>
+
+                    <td class="px-5 py-3">
+                        <div>
+                            <?php echo $item['price'] ?>
+                        </div>
+                    </td>
+
+                    <td class="px-5 py-3">
+                        <div>
+                            <?php echo $item['brand_id']; ?>
+                        </div>
+                    </td>
+
+                    <td class="px-5 py-3">
+                        <div>
+                            <?php echo $item['quantity']; ?>
+                        </div>
+                    </td>
+
+
+                    <td class="px-5 py-3">
+                        <div class="text-teal-50 flex items-center space-x-2">
+                            <div class="bg-teal-100 text-teal-500 rounded-sm hover:bg-green-300 editbtn">
+                                <a href="javascript:void(0)" class="w-full px-3" data-id="<?php echo $item['id'] ?>"
+                                    data-name="<?php echo $item['name'] ?>"
+                                    data-description="<?php echo $item['description'] ?>"
+                                    data-status="<?php echo $item['status_id'] ?>"
+                                    data-category="<?php echo $item['category_id'] ?>"
+                                    data-price="<?php echo $item['price'] ?>" data-brand="<?php echo $item['brand_id'] ?>"
+                                    data-quantity="<?php echo $item['quantity'] ?>"
+                                    data-image="<?php echo URLROOT; ?><?php echo $item['image'] ?>">Edit</a>
+                            </div>
+                            <div class=" bg-red-600 rounded-sm hover:bg-red-500">
+                                <button type="button" class="w-full px-3">Del</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
 
         <?php endforeach; ?>
@@ -586,11 +587,9 @@ ini_set('display_errors', 1);
             document.getElementById('editmodal').classList.toggle('hidden');
 
 
+            // get items value from index
             let element = e.target;
-
             let attributes = element.attributes;
-
-
             let productid = attributes['data-id'];
             let status = attributes['data-status'];
             let category = attributes['data-category'];
@@ -604,6 +603,7 @@ ini_set('display_errors', 1);
 
 
 
+            // show old value
             document.getElementById('editname').setAttribute('value', name.value);
             document.getElementById('editstatus_id').setAttribute('value', status.value);
             document.getElementById('editcategory_id').setAttribute('value', category.value);
@@ -618,11 +618,14 @@ ini_set('display_errors', 1);
 
             let imagesrc = document.querySelector('.gallery').children[0];
 
-            imagesrc.setAttribute('src', image.value)
+            imagesrc.setAttribute('src', image.value);
 
 
 
-            updatebtn.setAttribute('data-id', productid.value);
+
+            // product id for update
+            updatebtn.setAttribute('productid', productid.value);
+
 
 
         });
@@ -639,10 +642,17 @@ ini_set('display_errors', 1);
 
 
         updatebtn.addEventListener('click', (e) => {
+
+
+
+
+
+
             var getattr = e.target;
 
-            const formdata = new FormData(form);
 
+
+            const formdata = new FormData(form);
 
 
             const imagefile = document.getElementById('editimage').files[0];
@@ -650,34 +660,53 @@ ini_set('display_errors', 1);
                 formdata.append('image', imagefile);
             }
 
-            const productid = getattr.attributes['data-id'].value;
-            formdata.append('productid', productid);
+            productid = getattr.attributes['productid'].value,
+
+                formdata.append('productid', productid);
+
+
 
             var xmlhttp = new XMLHttpRequest();
             var url = `http://localhost/mvc/mvcdashboard/productpage/update`;
             xmlhttp.open("POST", url, true);
             xmlhttp.onreadystatechange = function (e) {
-                editbtn
+
                 if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
                     var result = xmlhttp.response;
+                    var responseData = JSON.parse(xmlhttp.responseText);
 
-                    console.log(result)
+                    // console.log(responseData['name'])
                     document.getElementById('editmodal').classList.toggle('hidden');
 
-                    // let allhasdata = true;
 
-                    // for (const [name, value] of formdata.entries()) {
-                    //     if (!value) {
-                    //         allhasdata = false;
-                    //         break;
-                    //     }
-                    // }
+                    // get table list 
+                    let productlists = document.querySelector('.product_list');
 
-                    // if (!imagefile) {
-                    //     allhasdata = false;
-                    // }
+                    let getitemid = productlists.getAttribute('data-tr-id');
 
-                    // checkallhasdata(allhasdata)
+                    let changeclass = productlists.getAttribute('class') + getitemid;
+
+                    productlists.setAttribute('class', changeclass);
+
+
+                    let getsingle = productlists.getAttribute('class');
+                    let productlist = document.querySelector(`.${getsingle}`);
+
+                    // console.log(productlist.children[2].children[0].innerHTML = responseData['name'])
+
+                    // const id = productlist.children[0].children[0];
+                    // const image = productlist.children[1].children[0].children[0].src = `<?php echo URLROOT; ?>${responseData['image']}`;
+                    // const items = productlist.children[2].children[0];
+                    // const status = productlist.children[3].children[0];
+                    // const categories = productlist.children[4].children[0];
+
+                    // const price = productlist.children[5].children[0];
+                    // const brand = productlist.children[6].children[0];
+                    // const quantity = productlist.children[7].children[0];
+
+
+
+
                 }
             };
 
@@ -688,42 +717,6 @@ ini_set('display_errors', 1);
 
 
 
-    function checkallhasdata(allhasdata) {
-        if (allhasdata) {
-
-            window.location.href = 'http://localhost/mvc/mvcdashboard/productpage';
-
-        } else {
-
-            const getinputs = document.querySelectorAll('.form-control');
-
-            const inputsArray = Array.from(getinputs);
-            var imgparent = inputsArray[2].parentElement.parentElement;
-
-            if (inputsArray[2].value == '') {
-                imgparent.children[1].classList.replace('border-teal-200', 'border-red-300')
-
-            } else {
-                imgparent.children[1].classList.replace('border-red-300', 'border-teal-200')
-
-            }
-
-            for (const input of inputsArray) {
-                const value = input.value;
-                if (value === '') {
-                    input.classList.add('border', 'border-red-300');
-
-                } else {
-                    input.classList.remove('border', 'border-red-300');
-
-                }
-            }
-
-
-        }
-
-    }
-
 
 
 
@@ -733,3 +726,6 @@ ini_set('display_errors', 1);
 </script>
 
 <?php require APPROOT . '/views/layouts/footer.php'; ?>
+
+
+<!-- 5:30  -->
