@@ -168,7 +168,7 @@ ini_set('display_errors', 1);
                                     data-image="<?php echo URLROOT; ?><?php echo $item['image'] ?>">Edit</a>
                             </div>
                             <div class=" bg-red-600 rounded-sm hover:bg-red-500">
-                                <button type="button" class="w-full px-3">Del</button>
+                                <button type="button" class="w-full px-3 delete_btn">Del</button>
                             </div>
                         </div>
                     </td>
@@ -577,13 +577,12 @@ ini_set('display_errors', 1);
 
 
 
+
+    //Start Edit 
+
     // start show old value 
     let editbtn = document.querySelectorAll('.editbtn');
     const updatebtn = document.querySelector('.update_btn');
-
-
-
-
 
     editbtn.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -633,15 +632,7 @@ ini_set('display_errors', 1);
 
             // get table list with id
             let productlists = document.querySelector('.product_list');
-
-
-
-
             let productlist = document.querySelector('.product_list' + productid.value);
-
-            // console.log(e.target.parentElement.parentElement.parentElement.parentElement)
-            // console.log(productlist)
-
 
             const imageui = productlist.children[1].children[0].children[0].src;
             const itemsui = productlist.children[2].children[0].innerHTML.trim();
@@ -695,15 +686,7 @@ ini_set('display_errors', 1);
 
         updatebtn.addEventListener('click', (e) => {
 
-
-
-
-
-
             var getattr = e.target;
-
-
-
             const formdata = new FormData(form);
 
 
@@ -761,7 +744,21 @@ ini_set('display_errors', 1);
     });
 
 
+    // End Edit
 
+
+
+    // Start Delete
+    const deletebtn = document.querySelectorAll('.delete_btn');
+    deletebtn.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+
+            console.log(e.target.parentElement.parentElement)
+
+        })
+
+    })
+    // End Delete 
 
 
 

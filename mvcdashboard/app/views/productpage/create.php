@@ -61,7 +61,7 @@
     <form id="form" action="" method="">
 
         <div class="w-full md:grid md:grid-cols-4 gap-10">
-            <div class="col-span-3 w-full bg-teal-100 rounded-md px-10 py-10 ">
+            <div class="col-span-3 w-full bg-slate-100 rounded-md px-10 py-10 ">
                 <div class="w-full h-full space-y-5">
                     <div class="flex flex-col justify-center">
                         <label for="name" class="text-teal-700">Product Title
@@ -85,7 +85,7 @@
             </div>
 
             <div class="space-y-5 md:mt-0 mt-5">
-                <div class="w-full bg-teal-100 flex flex-col justify-center items-center rounded-md px-5 py-5">
+                <div class="w-full bg-slate-100 flex flex-col justify-center items-center rounded-md px-5 py-5">
                     <span class="text-teal-700 self-start mb-5">Product Photo</span>
                     <div
                         class="w-full h-44 border border-teal-200 flex justify-center items-center rounded-md mb-5 gallery ">
@@ -98,12 +98,37 @@
                     </div>
                 </div>
 
-                <div class="w-full bg-teal-100 flex flex-col justify-center items-center rounded-md px-5 py-5">
+                <div class="w-full bg-slate-100 flex flex-col justify-center items-center rounded-md px-5 py-5">
                     <span class="text-teal-700 self-start mb-5">Category</span>
 
 
                     <div class="w-full relative custom-select">
                         <select
+                            class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-red-600">
+                            <svg class="w-4 h-4 fill-current text-gray-500" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M10 12.586L5.707 8.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 12.586z" />
+                            </svg>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="w-full bg-slate-200 flex flex-col justify-center items-center rounded-md px-5 py-5">
+                    <span class="text-teal-700 self-start mb-5">Brand</span>
+
+
+                    <div class="w-full relative custom-select">
+                        <select name="brand_id" id="editbrand_id"
                             class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
                             <option>Option 1</option>
                             <option>Option 2</option>
@@ -130,12 +155,14 @@
 
 
         <div class="w-full md:grid md:grid-cols-4 gap-10 mt-10">
-            <div class="col-span-3 w-full bg-teal-100  rounded-md px-10 py-3 ">
+            <div class="col-span-3 w-full bg-slate-100  rounded-md px-10 py-3 ">
                 <div class="w-full  space-y-5">
                     Other Details
                 </div>
 
             </div>
+
+
         </div>
 
         <div class="w-full grid grid-cols-4 gap-10 mt-10">
@@ -143,7 +170,7 @@
 
                 <div class="w-full md:grid md:grid-cols-3 gap-10">
 
-                    <div class="w-full bg-teal-100 text-teal-900 rounded-md px-6 py-10">
+                    <div class="w-full bg-slate-100 text-teal-900 rounded-md px-6 py-10">
                         <ul class="space-y-1 otherdetails_container_left">
                             <li
                                 class="w-full  transition-all duration-300 hover:bg-teal-500 hover:text-teal-50 rounded-md py-3 px-4 space-x-1 otherdetails_element_left">
@@ -164,7 +191,7 @@
 
                     </div>
                     <div class="col-span-2 md:mt-0 mt-5 otherdetails_container_right">
-                        <div class="bg-teal-100 rounded-md px-10 py-10 space-y-5 otherdetails_element_right">
+                        <div class="bg-slate-100 rounded-md px-10 py-10 space-y-5 otherdetails_element_right">
                             <div class="w-full grid grid-cols-3 items-center">
                                 <label for="price">Price:</label>
                                 <input type="number" name="price" id="price"
@@ -182,7 +209,7 @@
 
                         </div>
 
-                        <div class="bg-teal-100 rounded-md px-10 py-10 space-y-5 hidden otherdetails_element_right">
+                        <div class="bg-slate-100 rounded-md px-10 py-10 space-y-5 hidden otherdetails_element_right">
 
                             <div class="w-full grid grid-cols-3 items-center">
                                 <label for="">Stock Status:</label>
@@ -216,17 +243,18 @@
                             </div>
                         </div>
 
+
                         <div
-                            class="bg-teal-100 w-full flex justify-start items-start rounded-md px-10 py-10 hidden otherdetails_element_right">
-                            <div class=" w-full grid grid-cols-3 items-center">
-                                <label for="">Shipping:</label>
+                            class="w-full bg-slate-200 rounded-md px-10 py-10 space-y-5 hidden otherdetails_element_right">
+
+                            <div class="w-full grid grid-cols-3 items-center">
+                                <label for="editshipping">Shipping:</label>
 
                                 <div class="col-span-2 w-full relative custom-select">
-                                    <select
+                                    <select name="shipping" id="editshipping"
                                         class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
                                         <option>No Shipping</option>
                                         <option>Free Shipping</option>
-                                        <option>Fixed Shipping</option>
                                     </select>
 
                                     <div
@@ -240,7 +268,17 @@
                                 </div>
                             </div>
 
+
+                            <div class="w-full grid grid-cols-3 items-start">
+                                <label for="editremark">Remark:</label>
+                                <textarea type="text" name="editremark" id="remark"
+                                    class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 resize-none px-3 py-3 mt-2 "
+                                    placeholder="Remark"></textarea>
+                            </div>
+
+
                         </div>
+
                     </div>
 
                 </div>
