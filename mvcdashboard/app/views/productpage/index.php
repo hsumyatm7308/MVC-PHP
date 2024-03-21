@@ -100,7 +100,7 @@ ini_set('display_errors', 1);
             }
             ?> 
                 ">
-                <tr class="product_list" data-tr-id=<?php echo $item['id'] ?>>
+                <tr class="product_list<?php echo $item['id']; ?>">
                     <td class="px-5 py-3">
                         <div>
                             <?php echo ++$id; ?>
@@ -112,9 +112,9 @@ ini_set('display_errors', 1);
                         </div>
                     </td>
                     <td class="px-5 py-3">
-                        <div>
+                        <a href="#">
                             <?php echo $item['name'] ?>
-                        </div>
+                        </a>
                     </td>
                     <td class="px-5 py-3">
                         <div>
@@ -581,10 +581,16 @@ ini_set('display_errors', 1);
     let editbtn = document.querySelectorAll('.editbtn');
     const updatebtn = document.querySelector('.update_btn');
 
+
+
+
+
     editbtn.forEach(btn => {
         btn.addEventListener('click', (e) => {
 
             document.getElementById('editmodal').classList.toggle('hidden');
+
+
 
 
             // get items value from index
@@ -602,8 +608,7 @@ ini_set('display_errors', 1);
 
 
 
-
-            // show old value
+            // // show old value from server
             document.getElementById('editname').setAttribute('value', name.value);
             document.getElementById('editstatus_id').setAttribute('value', status.value);
             document.getElementById('editcategory_id').setAttribute('value', category.value);
@@ -623,8 +628,53 @@ ini_set('display_errors', 1);
 
 
 
+
+
+
+            // get table list with id
+            let productlists = document.querySelector('.product_list');
+
+
+
+
+            let productlist = document.querySelector('.product_list' + productid.value);
+
+            // console.log(e.target.parentElement.parentElement.parentElement.parentElement)
+            console.log(productlist)
+
+
+            // const imageui = productlist.children[1].children[0].children[0].src;
+            // const itemsui = productlist.children[2].children[0].innerHTML.trim();
+            // const statusui = productlist.children[3].children[0];
+            // const categoriesui = productlist.children[4].children[0];
+
+            // const priceui = productlist.children[5].children[0].innerHTML.trim();
+            // const brandui = productlist.children[6].children[0];
+            // const quantityui = productlist.children[7].children[0].innerHTML.trim();
+
+
+            // // reset
+            // let editname = document.getElementById('editname');
+            // let editimage = document.getElementById('editimage');
+            // let editprice = document.getElementById('editprice');
+            // let editbrand = document.getElementById('editbrand_id');
+            // // let editdescription = document.getElementById('editdescription');
+            // let editquantity = document.getElementById('editquantity');
+            // editname.value = itemsui;
+            // editimage.value = '';
+
+            // imagesrc.src = imageui;
+            // editprice.value = priceui;
+
+            // editquantity.value = quantityui;
+
+
+
+
             // product id for update
             updatebtn.setAttribute('productid', productid.value);
+
+
 
 
 
@@ -639,6 +689,8 @@ ini_set('display_errors', 1);
 
 
     document.addEventListener('DOMContentLoaded', function () {
+
+
 
 
         updatebtn.addEventListener('click', (e) => {
@@ -656,13 +708,17 @@ ini_set('display_errors', 1);
 
 
             const imagefile = document.getElementById('editimage').files[0];
+            console.log(imagefile);
+
             if (imagefile) {
                 formdata.append('image', imagefile);
             }
 
-            productid = getattr.attributes['productid'].value,
 
-                formdata.append('productid', productid);
+
+            productid = getattr.attributes['productid'].value;
+
+            formdata.append('productid', productid);
 
 
 
@@ -675,34 +731,23 @@ ini_set('display_errors', 1);
                     var result = xmlhttp.response;
                     var responseData = JSON.parse(xmlhttp.responseText);
 
-                    // console.log(responseData['name'])
                     document.getElementById('editmodal').classList.toggle('hidden');
 
 
-                    // get table list 
-                    let productlists = document.querySelector('.product_list');
 
-                    let getitemid = productlists.getAttribute('data-tr-id');
+                    let productlist = document.querySelector('.product_list' + productid);
 
-                    let changeclass = productlists.getAttribute('class') + getitemid;
+                    const id = productlist.children[0].children[0];
+                    const image = productlist.children[1].children[0].children[0].src = `<?php echo URLROOT; ?>${responseData['image']}`;
+                    const name = productlist.children[2].children[0].innerHTML = `${responseData['name']}`;
 
-                    productlists.setAttribute('class', changeclass);
+                    const status = productlist.children[3].children[0]; // R
+                    const categories = productlist.children[4].children[0]; // R
 
+                    const price = productlist.children[5].children[0].innerHTML = `${responseData['price']}`;
+                    const brand = productlist.children[6].children[0]; // R
+                    const quantity = productlist.children[7].children[0].innerHTML = `${responseData['quantity']}`;
 
-                    let getsingle = productlists.getAttribute('class');
-                    let productlist = document.querySelector(`.${getsingle}`);
-
-                    // console.log(productlist.children[2].children[0].innerHTML = responseData['name'])
-
-                    // const id = productlist.children[0].children[0];
-                    // const image = productlist.children[1].children[0].children[0].src = `<?php echo URLROOT; ?>${responseData['image']}`;
-                    // const items = productlist.children[2].children[0];
-                    // const status = productlist.children[3].children[0];
-                    // const categories = productlist.children[4].children[0];
-
-                    // const price = productlist.children[5].children[0];
-                    // const brand = productlist.children[6].children[0];
-                    // const quantity = productlist.children[7].children[0];
 
 
 
@@ -714,8 +759,6 @@ ini_set('display_errors', 1);
         });
 
     });
-
-
 
 
 
