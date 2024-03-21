@@ -640,33 +640,33 @@ ini_set('display_errors', 1);
             let productlist = document.querySelector('.product_list' + productid.value);
 
             // console.log(e.target.parentElement.parentElement.parentElement.parentElement)
-            console.log(productlist)
+            // console.log(productlist)
 
 
-            // const imageui = productlist.children[1].children[0].children[0].src;
-            // const itemsui = productlist.children[2].children[0].innerHTML.trim();
-            // const statusui = productlist.children[3].children[0];
-            // const categoriesui = productlist.children[4].children[0];
+            const imageui = productlist.children[1].children[0].children[0].src;
+            const itemsui = productlist.children[2].children[0].innerHTML.trim();
+            const statusui = productlist.children[3].children[0];
+            const categoriesui = productlist.children[4].children[0];
 
-            // const priceui = productlist.children[5].children[0].innerHTML.trim();
-            // const brandui = productlist.children[6].children[0];
-            // const quantityui = productlist.children[7].children[0].innerHTML.trim();
+            const priceui = productlist.children[5].children[0].innerHTML.trim();
+            const brandui = productlist.children[6].children[0];
+            const quantityui = productlist.children[7].children[0].innerHTML.trim();
 
 
-            // // reset
-            // let editname = document.getElementById('editname');
-            // let editimage = document.getElementById('editimage');
-            // let editprice = document.getElementById('editprice');
-            // let editbrand = document.getElementById('editbrand_id');
-            // // let editdescription = document.getElementById('editdescription');
-            // let editquantity = document.getElementById('editquantity');
-            // editname.value = itemsui;
-            // editimage.value = '';
+            // reset
+            let editname = document.getElementById('editname');
+            let editimage = document.getElementById('editimage');
+            let editprice = document.getElementById('editprice');
+            let editbrand = document.getElementById('editbrand_id');
+            // let editdescription = document.getElementById('editdescription');
+            let editquantity = document.getElementById('editquantity');
+            editname.value = itemsui;
+            editimage.value = '';
 
-            // imagesrc.src = imageui;
-            // editprice.value = priceui;
+            imagesrc.src = imageui;
+            editprice.value = priceui;
 
-            // editquantity.value = quantityui;
+            editquantity.value = quantityui;
 
 
 
