@@ -270,8 +270,8 @@
 
 
                             <div class="w-full grid grid-cols-3 items-start">
-                                <label for="editremark">Remark:</label>
-                                <textarea type="text" name="editremark" id="remark"
+                                <label for="remark">Remark:</label>
+                                <textarea type="text" name="remark" id="remark"
                                     class="col-span-2 w-full text-teal-700 rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 resize-none px-3 py-3 mt-2 "
                                     placeholder="Remark"></textarea>
                             </div>
@@ -405,11 +405,24 @@
                     let allhasdata = true;
 
                     for (const [name, value] of formdata.entries()) {
-                        if (!value) {
+
+
+
+
+                        if (!value && !name.includes('remark')) {
+
                             allhasdata = false;
                             break;
                         }
+
+
+
+                        const remark = document.getElementById('remark')
+
+                        console.log()
                     }
+                    console.log(imagefile)
+
 
                     if (!imagefile) {
                         allhasdata = false;
@@ -419,7 +432,11 @@
                 }
             };
 
+
             xmlhttp.send(formdata);
+
+
+
         });
 
     });
@@ -430,10 +447,15 @@
         if (allhasdata) {
 
             window.location.href = 'http://localhost/mvc/mvcdashboard/productpage';
+            console.log('alldata has')
 
         } else {
+            console.log('not complete')
 
             const getinputs = document.querySelectorAll('.form-control');
+
+            // console.log(getinputs)
+
 
             const inputsArray = Array.from(getinputs);
             var imgparent = inputsArray[2].parentElement.parentElement;
@@ -448,6 +470,9 @@
 
             for (const input of inputsArray) {
                 const value = input.value;
+
+                // console.log(value)
+
                 if (value === '') {
                     input.classList.add('border', 'border-red-300');
 

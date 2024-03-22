@@ -36,7 +36,7 @@ class Product
             $category_id = 1;
             $brand_id = 1;
 
-
+            $remark = "abcd";
 
 
 

@@ -91,7 +91,8 @@ class Productpage extends Controller
 
         move_uploaded_file($image['tmp_name'], $uploadfile);
 
-        $insertimg = "/public/assets/items/" . basename($image['name']);
+        $insertimg = basename($image['name']) ? "/public/assets/items/" . basename($image['name']) : die ('err');
+
 
         $data = [
             "image" => $insertimg,
@@ -104,7 +105,9 @@ class Productpage extends Controller
             "category_id" => trim($_POST['category_id']),
             "status_id" => trim($_POST['status_id']),
             "brand_id" => trim($_POST['status_id']),
+            "remark" => trim($_POST['remark'])
         ];
+
 
 
 
