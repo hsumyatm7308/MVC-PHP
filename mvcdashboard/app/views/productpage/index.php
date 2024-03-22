@@ -8,6 +8,34 @@ ini_set('display_errors', 1);
 
 
 
+<style>
+    .removetext span {
+        display: none;
+    }
+
+    .gallery img {
+        width: inherit;
+        max-height: 11rem;
+
+        object-fit: cover;
+        border-radius: 10px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .scrollbars::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    .bg-gradient {
+        background: linear-gradient(180deg, transparent 50%, rgb(203 213 225) 50%);
+    }
+</style>
+
+
 
 
 <!-- <div class="w-full text-black  flex justify-between items-center p-10 mb-5"> -->
@@ -190,30 +218,6 @@ ini_set('display_errors', 1);
 </div>
 
 
-
-
-<style>
-    .removetext span {
-        display: none;
-    }
-
-    .gallery img {
-        width: inherit;
-        max-height: 11rem;
-
-        object-fit: cover;
-        border-radius: 10px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-    }
-
-    .scrollbars::-webkit-scrollbar {
-        width: 2px;
-    }
-</style>
 
 
 <div id="editmodal" class="w-full h-auto hidden">
@@ -492,6 +496,47 @@ ini_set('display_errors', 1);
 
 
 </div>
+
+<!-- end edit modal  -->
+
+<!-- start delete modal  -->
+<div id="deletemodal" class="w-full h-auto ">
+    <div
+        class="w-full h-screen flex justify-center items-center bg-[linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.1))]  overflow-x-auto  absolute left-0 top-0 z-20 md:p-20">
+        <div class="w-96 h-64 bg-slate-100 shadow-lg rounded-md border">
+            <div class="flex justify-center items-center ">
+                <div
+                    class="w-[80px] h-[80px]  bg-gradient flex justify-center items-center rounded-full text-red-600 shadow-sm transform translate-y-[-40px]">
+                    <i class="fa-regular fa-trash-can text-[40px]"></i>
+                </div>
+
+
+            </div>
+
+            <div class=" flex justify-center items-center -mt-5">
+                <h2 class="font-medium text-lg">You are about to delete this product</h2>
+            </div>
+
+            <div class="text-slate-400 text-center text-sm mt-5">
+                <span>This will delete your product from catalog</span>
+                <div>
+                    Are you sure?
+                </div>
+            </div>
+
+            <div class="w-full flex justify-end items-center mt-10 px-5 space-x-2">
+                <button
+                    class="bg-slate-200 hover:bg-slate-300 transition-all duration-300 rounded-md px-3 py-2">Cancle</button>
+                <button class="bg-red-500 rounded-md hover:opacity-90 px-3 py-2">Delete</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<!-- end edit modal  -->
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
