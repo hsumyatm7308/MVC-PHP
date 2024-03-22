@@ -164,6 +164,18 @@ class Productpage extends Controller
 
     }
 
+
+    public function destroy()
+    {
+        var_dump($_POST['id']);
+
+        $data = [
+            'id' => $_POST['id']
+        ];
+
+        $this->mainmodel->destroyitem($data);
+    }
+
 }
 
 

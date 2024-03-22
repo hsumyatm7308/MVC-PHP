@@ -31,7 +31,8 @@ ini_set('display_errors', 1);
     }
 
     .bg-gradient {
-        background: linear-gradient(180deg, transparent 50%, rgb(203 213 225) 50%);
+        width: 10%;
+        background: rgb(14 165 233);
     }
 </style>
 
@@ -196,7 +197,8 @@ ini_set('display_errors', 1);
                                     data-image="<?php echo URLROOT; ?><?php echo $item['image'] ?>">Edit</a>
                             </div>
                             <div class=" bg-red-600 rounded-sm hover:bg-red-500">
-                                <button type="button" class="w-full px-3 delete_btn">Del</button>
+                                <button type="button" class="w-full px-3 delete_btn"
+                                    data-id="<?php echo $item['id'] ?>">Del</button>
                             </div>
                         </div>
                     </td>
@@ -500,34 +502,50 @@ ini_set('display_errors', 1);
 <!-- end edit modal  -->
 
 <!-- start delete modal  -->
-<div id="deletemodal" class="w-full h-auto ">
+<div id="deletemodal" class="w-full h-auto hidden">
     <div
         class="w-full h-screen flex justify-center items-center bg-[linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.1))]  overflow-x-auto  absolute left-0 top-0 z-20 md:p-20">
-        <div class="w-96 h-64 bg-slate-100 shadow-lg rounded-md border">
-            <div class="flex justify-center items-center ">
-                <div
-                    class="w-[80px] h-[80px]  bg-gradient flex justify-center items-center rounded-full text-red-600 shadow-sm transform translate-y-[-40px]">
-                    <i class="fa-regular fa-trash-can text-[40px]"></i>
-                </div>
+        <div class="bg-slate-100 shadow-lg rounded-md border flex flex-col justify-center items-center py-5 px-10">
 
-
-            </div>
-
-            <div class=" flex justify-center items-center -mt-5">
-                <h2 class="font-medium text-lg">You are about to delete this product</h2>
-            </div>
-
-            <div class="text-slate-400 text-center text-sm mt-5">
-                <span>This will delete your product from catalog</span>
+            <div class="w-full flex justify-end">
                 <div>
-                    Are you sure?
+                    <i class="fa-regular fa-circle-xmark text-lg text-slate-500"></i>
                 </div>
             </div>
 
-            <div class="w-full flex justify-end items-center mt-10 px-5 space-x-2">
+            <div class="flex justify-between items-center space-x-10 mt-3">
+                <div class="w-[20%] flex justify-start items-center ">
+                    <div class="w-[80px] h-[80px] flex justify-center items-center  text-red-600 shadow-sm ">
+                        <div
+                            class="w-[70px] h-[70px]  bg-slate-200 bg-slate-200 flex justify-center items-center rounded-full">
+
+                            <i class="fa-regular fa-trash-can text-[40px]"></i>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="w-[80%]  delte_text">
+                    <div class="w-full font-normal ">
+                        <span>This will delete your product.</span>
+                        <p>Are you sure?</p>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+            </div>
+
+            <div class="w-full flex justify-end items-center mt-10 space-x-2">
                 <button
-                    class="bg-slate-200 hover:bg-slate-300 transition-all duration-300 rounded-md px-3 py-2">Cancle</button>
-                <button class="bg-red-500 rounded-md hover:opacity-90 px-3 py-2">Delete</button>
+                    class="bg-slate-200 hover:bg-slate-300 transition-all duration-300 rounded-md px-3 py-2 cancledelete"
+                    onclick="document.getElementById('deletemodal').classList.toggle('hidden')">Cancle</button>
+                <button class="bg-red-500 rounded-md hover:opacity-90 px-3 py-2 deletemodal_btn">Delete</button>
             </div>
         </div>
     </div>
@@ -544,271 +562,7 @@ ini_set('display_errors', 1);
     crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<script>
-
-
-
-
-    $(document).ready(function () {
-
-        var previewimages = function (input, output) {
-
-
-
-            if (input.files) {
-                var totalfiles = input.files.length;
-
-
-                if (totalfiles > 0) {
-                    $('.gallery').addClass('removetext');
-                } else {
-                    $(".gallery").removeClass('removetext');
-                }
-
-                for (var i = 0; i < totalfiles; i++) {
-                    var filereader = new FileReader();
-                    filereader.onload = function (e) {
-                        $(output).html(""); $($.parseHTML("<img>")).attr("src", e.target.result).appendTo(output);
-                    }
-                    filereader.readAsDataURL(input.files[i]);
-
-                    console.log(filereader.readAsDataURL(input.files[i]));
-                }
-            }
-        };
-
-        // for single image
-
-        $("#editimage").change(function () {
-            previewimages(this, ".gallery");
-        })
-
-
-
-
-
-    });
-
-
-    // other details 
-    let leftdetaileles = document.querySelectorAll('.otherdetails_element_left');
-    let rightdetaileles = document.querySelectorAll('.otherdetails_element_right');
-
-    const indexes = [];
-    const show = [...leftdetaileles].map((leftdetailele, idx) => {
-        leftdetaileles[0].classList.add('bg-teal-500', 'text-teal-50');
-
-        leftdetailele.addEventListener('click', () => {
-
-            const rest = indexes.filter(index => index !== idx);
-
-            rightdetaileles[idx].classList.remove('hidden');
-            leftdetailele.classList.add('bg-teal-500', 'text-teal-50');
-
-            rest.forEach(index => {
-                rightdetaileles[index].classList.add('hidden');
-                leftdetaileles[index].classList.remove('bg-teal-500', 'text-teal-50');
-
-            });
-
-
-        });
-
-
-
-        indexes.push(idx);
-
-    });
-
-
-
-
-    //Start Edit 
-
-    // start show old value 
-    let editbtn = document.querySelectorAll('.editbtn');
-    const updatebtn = document.querySelector('.update_btn');
-
-    editbtn.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-
-            document.getElementById('editmodal').classList.toggle('hidden');
-
-
-
-
-            // get items value from index
-            let element = e.target;
-            let attributes = element.attributes;
-            let productid = attributes['data-id'];
-            let status = attributes['data-status'];
-            let category = attributes['data-category'];
-            let name = attributes['data-name'];
-            let price = attributes['data-price'];
-            let brand = attributes['data-brand'];
-            let quantity = attributes['data-quantity'];
-            let description = attributes['data-description'];
-            let image = attributes['data-image'];
-
-
-
-            // // show old value from server
-            document.getElementById('editname').setAttribute('value', name.value);
-            document.getElementById('editstatus_id').setAttribute('value', status.value);
-            document.getElementById('editcategory_id').setAttribute('value', category.value);
-            document.getElementById('editprice').setAttribute('value', price.value);
-            document.getElementById('editbrand_id').setAttribute('value', brand.value);
-            document.getElementById('editdescription').innerHTML = `${description.value}`;
-
-            document.getElementById('editquantity').setAttribute('value', quantity.value);
-
-
-            document.querySelector('.gallery').classList.add('removetext')
-
-            let imagesrc = document.querySelector('.gallery').children[0];
-
-            imagesrc.setAttribute('src', image.value);
-
-
-
-
-
-
-
-            // get table list with id
-            let productlists = document.querySelector('.product_list');
-            let productlist = document.querySelector('.product_list' + productid.value);
-
-            const imageui = productlist.children[1].children[0].children[0].src;
-            const itemsui = productlist.children[2].children[0].innerHTML.trim();
-            const statusui = productlist.children[3].children[0];
-            const categoriesui = productlist.children[4].children[0];
-
-            const priceui = productlist.children[5].children[0].innerHTML.trim();
-            const brandui = productlist.children[6].children[0];
-            const quantityui = productlist.children[7].children[0].innerHTML.trim();
-
-
-            // reset
-            let editname = document.getElementById('editname');
-            let editimage = document.getElementById('editimage');
-            let editprice = document.getElementById('editprice');
-            let editbrand = document.getElementById('editbrand_id');
-            // let editdescription = document.getElementById('editdescription');
-            let editquantity = document.getElementById('editquantity');
-            editname.value = itemsui;
-            editimage.value = '';
-
-            imagesrc.src = imageui;
-            editprice.value = priceui;
-
-            editquantity.value = quantityui;
-
-
-
-
-            // product id for update
-            updatebtn.setAttribute('productid', productid.value);
-
-
-
-
-
-        });
-    });
-    // end show old value 
-
-
-    // all values from form
-    let form = document.getElementById('form');
-
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-
-
-
-
-        updatebtn.addEventListener('click', (e) => {
-
-            var getattr = e.target;
-            const formdata = new FormData(form);
-
-
-            const imagefile = document.getElementById('editimage').files[0];
-            console.log(imagefile);
-
-            if (imagefile) {
-                formdata.append('image', imagefile);
-            }
-
-
-
-            productid = getattr.attributes['productid'].value;
-
-            formdata.append('productid', productid);
-
-
-
-            var xmlhttp = new XMLHttpRequest();
-            var url = `http://localhost/mvc/mvcdashboard/productpage/update`;
-            xmlhttp.open("POST", url, true);
-            xmlhttp.onreadystatechange = function (e) {
-
-                if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
-                    var result = xmlhttp.response;
-                    var responseData = JSON.parse(xmlhttp.responseText);
-
-                    document.getElementById('editmodal').classList.toggle('hidden');
-
-
-
-                    let productlist = document.querySelector('.product_list' + productid);
-
-                    const id = productlist.children[0].children[0];
-                    const image = productlist.children[1].children[0].children[0].src = `<?php echo URLROOT; ?>${responseData['image']}`;
-                    const name = productlist.children[2].children[0].innerHTML = `${responseData['name']}`;
-
-                    const status = productlist.children[3].children[0]; // R
-                    const categories = productlist.children[4].children[0]; // R
-
-                    const price = productlist.children[5].children[0].innerHTML = `${responseData['price']}`;
-                    const brand = productlist.children[6].children[0]; // R
-                    const quantity = productlist.children[7].children[0].innerHTML = `${responseData['quantity']}`;
-
-
-
-
-
-                }
-            };
-
-            xmlhttp.send(formdata);
-        });
-
-    });
-
-
-    // End Edit
-
-
-
-    // Start Delete
-    const deletebtn = document.querySelectorAll('.delete_btn');
-    deletebtn.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-
-            console.log(e.target.parentElement.parentElement)
-
-        })
-
-    })
-    // End Delete 
-
-
-
-
-</script>
+<script src="<?php echo URLROOT; ?>/public/js/product.js"></script>
 
 <?php require APPROOT . '/views/layouts/footer.php'; ?>
 

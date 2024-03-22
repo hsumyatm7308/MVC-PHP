@@ -111,12 +111,22 @@ class Product
 
     }
 
+    public function destroyitem($data)
+    {
+        $id = $data['id'];
+        $this->db->dbquery('DELETE FROM items WHERE id = :id');
+        $this->db->dbbind(':id', $id);
+        $this->db->dbexecute();
+    }
+
     public function image($productid)
     {
         $this->db->dbquery('SELECT image FROM items WHERE id = :productid');
         $this->db->dbbind(":productid", $productid);
         return $this->db->getsingledata();
     }
+
+
 
 
 }
