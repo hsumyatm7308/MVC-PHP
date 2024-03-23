@@ -1,6 +1,6 @@
 <div class="md:col-span-5 w-full h-screen overflow-y-scroll  relative">
 
-    <div class="w-full flex justify-between items-center bg-teal-700 px-10 py-3 sticky top-0">
+    <div class="w-full flex justify-between items-center bg-teal-700 px-10 py-3 sticky top-0 z-20">
 
         <div class="flex justify-start items-center">
             <div class="w-14 h-14  flex justify-center items-center rounded-full" onclick="togglesidebar()">

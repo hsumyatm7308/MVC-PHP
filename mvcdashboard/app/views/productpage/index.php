@@ -37,90 +37,173 @@ ini_set('display_errors', 1);
 </style>
 
 
+<div class="w-full text-black  flex justify-between items-center p-10">
+    <div class="text-sm">
+        <p><span>Product</span> | <span class="text-slate-500">All products</span></p>
+    </div>
 
+    <div class="">
+        <div class="w-[1000px] h-[1px] bg-slate-200">
 
-<!-- <div class="w-full text-black  flex justify-between items-center p-10 mb-5"> -->
-<div class="w-full text-black  flex justify-between items-center p-10 mb-5">
-    <div>
-        <div>
-            <h1 class="text-2xl">Products List</h1>
-        </div>
-        <div class="text-gray-500 mt-2">
-            <span class="text-sm">Home | Product List</span>
         </div>
     </div>
-    <div>
+    <div class="">
         <a href="<?php echo URLROOT; ?>/productpage/create"
-            class="text-green-100 bg-teal-500 hover:bg-teal-600 rounded-md px-4 py-2 ">
-            <button class="app-content-headerButton">Add Product</button>
+            class="text-green-100 bg-teal-500 hover:bg-teal-600 flex justify-center items-center rounded-md px-4 py-3 ">
+            <i class="fa-solid fa-plus me-2"></i>
+            <button class="app-content-headerButton flex justify-center items-center">Add Product</button>
         </a>
     </div>
 
 </div>
 
 
-<div class="w-full px-10 overflow-x-auto ">
+<div class="px-10 py-5">
+    <h1 class="text-3xl text-slate-700 font-light">Product List</h1>
+</div>
 
-    <table class="w-full">
-        <thead class="w-full font-medium">
-            <td class="px-5 py-3">
-                <div>
-                    <h1>Id</h1>
+
+<!-- Filter -->
+<div class="w-full ">
+
+    <form action="">
+
+        <div class="flex justify-center items-center py-10 px-10 ">
+            <div class="flex flex-col justify-center me-10">
+                <label for="name" class="text-teal-700">Items
+
+                </label>
+                <input type="text" name="name" id="name"
+                    class="text-teal-700 border rounded-md focus:outline-0 focus:ring-1 focus:ring-teal-300 px-3 py-3 mt-2 form-control"
+                    placeholder="Title">
+
+            </div>
+
+            <div class="w-full relative custom-select me-10">
+                <label for="name" class="text-teal-700">Categories
+
+                </label>
+                <select
+                    class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-3 pr-8 mt-2 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                </select>
+
+                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-red-600">
+                    <svg class="w-4 h-4 fill-current text-gray-500" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M10 12.586L5.707 8.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 12.586z" />
+                    </svg>
                 </div>
-            </td>
-            <td class="px-5 py-3">
-                <div>
-                    <h1>Photo</h1>
+            </div>
+
+
+            <div class="w-full relative custom-select me-10">
+                <label for="status" class="text-teal-700">Status
+
+                </label>
+                <select
+                    class="block appearance-none w-full bg-white border border-gray-300  transition-all duration-300  hover:border-gray-400 px-4 py-3 pr-8 mt-2 rounded-md shadow-sm focus:outline-none focus:border-teal-500 focus:ring focus:ring-teal-500 focus:ring-opacity-50">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                </select>
+
+                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-red-600">
+                    <svg class="w-4 h-4 fill-current text-gray-500" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M10 12.586L5.707 8.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0l5-5a1 1 0 00-1.414-1.414L10 12.586z" />
+                    </svg>
                 </div>
-            </td>
-            <td class="px-5 py-3">
-                <div>
-                    <h1>Items</h1>
-                </div>
-            </td>
-            <td class="px-5 py-3">
-                <div>
-                    <h1>Status</h1>
-                </div>
-            </td>
-
-            <td class="px-5 py-3">
-                <div>
-                    <h1>Categories</h1>
-                </div>
-            </td>
-
-            <td class="px-5 py-3">
-                <div>
-                    <h1>Price</h1>
-                </div>
-            </td>
-
-            <td class="px-5 py-3">
-                <div>
-                    <h1>Brand</h1>
-                </div>
-            </td>
-
-            <td class="px-5 py-3">
-                <div>
-                    <h1>Quantity</h1>
-                </div>
-            </td>
+            </div>
 
 
-            <td class="px-5 py-3">
-                <div>
-                    <h1>Acion</h1>
-                </div>
-            </td>
+            <div class="flex flex-col justify-center">
+                <label for="" class="text-white">Search
 
-        </thead>
+                </label>
+                <button
+                    class="text-gray-500 bg-slate-300 hover:opacity-80 rounded-md flex justify-center items-center px-4 py-3 mt-2">
+                    <i class="fa-solid fa-magnifying-glass me-1"></i>
 
-        <?php foreach ($data['items'] as $id => $item): ?>
+                    Search</button>
+            </div>
+            <div>
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
 
 
-            <tbody class="w-full border-collapse border-t border-slate-100
+
+<div class="w-full  overflow-x-auto px-10 py-10">
+
+    <div class="border border-slate-300 rounded-lg p-1">
+        <table class="w-full">
+            <thead class="w-full font-medium bg-slate-300 ">
+                <td class="px-5 py-5">
+                    <div>
+                        <h1>Id</h1>
+                    </div>
+                </td>
+                <td class="px-5 py-5">
+                    <div>
+                        <h1>Photo</h1>
+                    </div>
+                </td>
+                <td class="px-5 py-5">
+                    <div>
+                        <h1>Items</h1>
+                    </div>
+                </td>
+                <td class="px-5 py-5">
+                    <div>
+                        <h1>Status</h1>
+                    </div>
+                </td>
+
+                <td class="px-5 py-5">
+                    <div>
+                        <h1>Categories</h1>
+                    </div>
+                </td>
+
+                <td class="px-5 py-5">
+                    <div>
+                        <h1>Price</h1>
+                    </div>
+                </td>
+
+                <td class="px-5 py-5">
+                    <div>
+                        <h1>Brand</h1>
+                    </div>
+                </td>
+
+                <td class="px-5 py-5">
+                    <div>
+                        <h1>Quantity</h1>
+                    </div>
+                </td>
+
+
+                <td class="px-5 py-5">
+                    <div>
+                        <h1>Acion</h1>
+                    </div>
+                </td>
+
+            </thead>
+
+            <?php foreach ($data['items'] as $id => $item): ?>
+
+
+                <tbody class="w-full border-collapse border-t border-slate-100
             <?php
             if (!is_even($id)) {
                 echo "bg-teal-50";
@@ -129,89 +212,91 @@ ini_set('display_errors', 1);
             }
             ?> 
                 ">
-                <tr class="product_list<?php echo $item['id']; ?> text-gray-800">
-                    <td class="px-5 py-3">
-                        <div>
-                            <?php echo ++$id; ?>
-                        </div>
-                    </td>
-                    <td class="px-5 py-3">
-                        <div class="w-10 h-10 rounded-md overflow-hidden">
-                            <img src="<?php echo URLROOT; ?><?php echo $item['image'] ?>" alt="" class="w-20">
-                        </div>
-                    </td>
-                    <td class="px-5 py-3">
-                        <a href="<?php echo URLROOT; ?>/productpage/show">
-                            <?php echo $item['name'] ?>
-                        </a>
-                    </td>
-                    <td class="px-5 py-3">
-                        <div>
-                            <!-- <?php echo $item['status_id'] ?> -->
-
-                            <?php
-                            if (is_even($id)) {
-                                echo '<span class="text-teal-700 text-xs"> In stock </span>';
-                            } else {
-                                echo '<span class="text-red-700 text-xs"> Out of stock </span>';
-                            }
-                            ?>
-                        </div>
-                    </td>
-
-                    <td class="px-5 py-3">
-                        <div>
-                            <?php echo $item['category_id'] ?>
-                        </div>
-                    </td>
-
-                    <td class="px-5 py-3">
-                        <div>
-                            <?php echo $item['price'] ?>
-                        </div>
-                    </td>
-
-                    <td class="px-5 py-3">
-                        <div>
-                            <?php echo $item['brand_id']; ?>
-                        </div>
-                    </td>
-
-                    <td class="px-5 py-3">
-                        <div>
-                            <?php echo $item['quantity']; ?>
-                        </div>
-                    </td>
-
-
-                    <td class="px-5 py-3">
-                        <div class="text-teal-50 flex items-center space-x-2">
-                            <div class="bg-teal-100 text-teal-500 rounded-sm hover:bg-green-300 editbtn">
-                                <a href="javascript:void(0)" class="w-full px-3" data-id="<?php echo $item['id'] ?>"
-                                    data-name="<?php echo $item['name'] ?>"
-                                    data-description="<?php echo $item['description'] ?>"
-                                    data-status="<?php echo $item['status_id'] ?>"
-                                    data-category="<?php echo $item['category_id'] ?>"
-                                    data-price="<?php echo $item['price'] ?>" data-brand="<?php echo $item['brand_id'] ?>"
-                                    data-quantity="<?php echo $item['quantity'] ?>"
-                                    data-image="<?php echo URLROOT; ?><?php echo $item['image'] ?>">Edit</a>
+                    <tr class="product_list<?php echo $item['id']; ?> text-gray-800">
+                        <td class="px-5 py-3">
+                            <div>
+                                <?php echo ++$id; ?>
                             </div>
-                            <div class=" bg-red-600 rounded-sm hover:bg-red-500">
-                                <button type="button" class="w-full px-3 delete_btn"
-                                    data-id="<?php echo $item['id'] ?>">Del</button>
+                        </td>
+                        <td class="px-5 py-3">
+                            <div class="w-10 h-10 rounded-md overflow-hidden">
+                                <img src="<?php echo URLROOT; ?><?php echo $item['image'] ?>" alt="" class="w-20">
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
+                        </td>
+                        <td class="px-5 py-3">
+                            <a href="<?php echo URLROOT; ?>/productpage/show">
+                                <?php echo $item['name'] ?>
+                            </a>
+                        </td>
+                        <td class="px-5 py-3">
+                            <div>
+                                <!-- <?php echo $item['status_id'] ?> -->
 
-        <?php endforeach; ?>
+                                <?php
+                                if (is_even($id)) {
+                                    echo '<span class="text-teal-700 text-xs"> In stock </span>';
+                                } else {
+                                    echo '<span class="text-red-700 text-xs"> Out of stock </span>';
+                                }
+                                ?>
+                            </div>
+                        </td>
 
-        <tfoot>
+                        <td class="px-5 py-3">
+                            <div>
+                                <?php echo $item['category_id'] ?>
+                            </div>
+                        </td>
 
-        </tfoot>
-    </table>
+                        <td class="px-5 py-3">
+                            <div>
+                                <?php echo $item['price'] ?>
+                            </div>
+                        </td>
 
+                        <td class="px-5 py-3">
+                            <div>
+                                <?php echo $item['brand_id']; ?>
+                            </div>
+                        </td>
+
+                        <td class="px-5 py-3">
+                            <div>
+                                <?php echo $item['quantity']; ?>
+                            </div>
+                        </td>
+
+
+                        <td class="px-5 py-3">
+                            <div class="text-teal-50 flex items-center space-x-2">
+                                <div class="bg-teal-100 text-teal-500 rounded-sm hover:bg-green-300 editbtn">
+                                    <a href="javascript:void(0)" class="w-full px-3" data-id="<?php echo $item['id'] ?>"
+                                        data-name="<?php echo $item['name'] ?>"
+                                        data-description="<?php echo $item['description'] ?>"
+                                        data-status="<?php echo $item['status_id'] ?>"
+                                        data-category="<?php echo $item['category_id'] ?>"
+                                        data-price="<?php echo $item['price'] ?>"
+                                        data-brand="<?php echo $item['brand_id'] ?>"
+                                        data-quantity="<?php echo $item['quantity'] ?>"
+                                        data-image="<?php echo URLROOT; ?><?php echo $item['image'] ?>">Edit</a>
+                                </div>
+                                <div class=" bg-red-600 rounded-sm hover:bg-red-500">
+                                    <button type="button" class="w-full px-3 delete_btn"
+                                        data-id="<?php echo $item['id'] ?>">Del</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+
+            <?php endforeach; ?>
+
+            <tfoot>
+
+            </tfoot>
+        </table>
+
+    </div>
 </div>
 
 
