@@ -129,7 +129,7 @@ ini_set('display_errors', 1);
             }
             ?> 
                 ">
-                <tr class="product_list<?php echo $item['id']; ?>">
+                <tr class="product_list<?php echo $item['id']; ?> text-gray-800">
                     <td class="px-5 py-3">
                         <div>
                             <?php echo ++$id; ?>
@@ -141,7 +141,7 @@ ini_set('display_errors', 1);
                         </div>
                     </td>
                     <td class="px-5 py-3">
-                        <a href="#">
+                        <a href="<?php echo URLROOT; ?>/productpage/show">
                             <?php echo $item['name'] ?>
                         </a>
                     </td>

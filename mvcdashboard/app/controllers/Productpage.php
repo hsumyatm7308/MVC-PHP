@@ -120,6 +120,12 @@ class Productpage extends Controller
 
     }
 
+    public function show()
+    {
+        $this->view('productpage/show');
+    }
+
+
 
 
 
